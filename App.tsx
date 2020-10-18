@@ -16,15 +16,22 @@ import {
   View,
   Text,
   StatusBar,
+  Image,
+  TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import styled from 'styled-components/native';
+import Post from './src/components/Post';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
+  const dimensions = Dimensions.get('window');
+  const imageWidth = dimensions.width;
+  const imageHeight = imageWidth;
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -37,14 +44,19 @@ const App = () => {
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <View style={styles.body}>
-            <Text>Hello world!</Text>
-          </View>
+          <Section>
+            <Post writer="pigrabbit"></Post>
+          </Section>
         </ScrollView>
       </SafeAreaView>
     </>
   );
 };
+
+const Section = styled.View`
+  background-color: #fff;
+  width: 100%;
+`;
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -53,9 +65,6 @@ const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
     right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
   },
   footer: {
     color: Colors.dark,
