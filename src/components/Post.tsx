@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, TouchableOpacity, Text, Dimensions} from 'react-native';
 import styled from 'styled-components/native';
+import {LOAD_MORE_COMMENT_MESSAGE} from '../constants/message';
 import PostComment from './PostComment';
 
 export interface PostProps {
@@ -30,7 +31,7 @@ const Post: React.FC<PostProps> = (props) => {
         </PostHeaderProfile>
         <TouchableOpacity onPress={() => console.log('more button tapped')}>
           <Icon
-            source={require('./assets/icons/outline_more_horiz_black_48dp.png')}
+            source={require('../../assets/icons/outline_more_horiz_black_48dp.png')}
           />
         </TouchableOpacity>
       </PostHeader>
@@ -46,13 +47,13 @@ const Post: React.FC<PostProps> = (props) => {
         <PostControlPanelLeft>
           <TouchableOpacity onPress={() => console.log('like button tapped')}>
             <Icon
-              source={require('./assets/icons/outline_favorite_border_black_48dp.png')}
+              source={require('../../assets/icons/outline_favorite_border_black_48dp.png')}
             />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => console.log('comment button tapped')}>
             <Icon
-              source={require('./assets/icons/outline_maps_ugc_black_48dp.png')}
+              source={require('../../assets/icons/outline_maps_ugc_black_48dp.png')}
             />
           </TouchableOpacity>
         </PostControlPanelLeft>
@@ -60,7 +61,7 @@ const Post: React.FC<PostProps> = (props) => {
           <TouchableOpacity
             onPress={() => console.log('archive button tapped')}>
             <Icon
-              source={require('./assets/icons/outline_archive_black_48dp.png')}
+              source={require('../../assets/icons/outline_archive_black_48dp.png')}
             />
           </TouchableOpacity>
         </PostControlPanelRight>
@@ -73,7 +74,7 @@ const Post: React.FC<PostProps> = (props) => {
       </PostBody>
       <PostCommentList>
         <PostCommentLoader onPress={() => console.log('load all comments')}>
-          View all 11 comments
+          {LOAD_MORE_COMMENT_MESSAGE}
         </PostCommentLoader>
         <PostComment writer="joedoe" content="우와 사진어디야?" />
         <PostComment writer="resit" content="Awesome picture!" />

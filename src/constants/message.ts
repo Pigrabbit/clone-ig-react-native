@@ -1,0 +1,1 @@
+export const LOAD_MORE_COMMENT_MESSAGE = 'View all comments'
