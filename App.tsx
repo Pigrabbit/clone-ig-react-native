@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React from 'react'
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,21 +16,21 @@ import {
   View,
   Text,
   StatusBar,
-  Image,
-  TouchableOpacity,
   Dimensions,
-} from 'react-native';
+} from 'react-native'
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import styled from 'styled-components/native';
-import Post from './src/components/Post';
+import {Colors} from 'react-native/Libraries/NewAppScreen'
+import styled from 'styled-components/native'
+import Post from './src/components/Post'
+import {FETCHED_POSTS} from './src/data'
 
-declare const global: {HermesInternal: null | {}};
+declare const global: {HermesInternal: null | {}}
 
 const App = () => {
-  const dimensions = Dimensions.get('window');
-  const imageWidth = dimensions.width;
-  const imageHeight = imageWidth;
+  const posts = FETCHED_POSTS
+  const dimensions = Dimensions.get('window')
+  const imageWidth = dimensions.width
+  const imageHeight = imageWidth
 
   return (
     <>
@@ -45,18 +45,26 @@ const App = () => {
             </View>
           )}
           <Section>
-            <Post writer="pigrabbit"></Post>
+            {FETCHED_POSTS.map((post, idx) => (
+              <Post
+                key={idx}
+                writer={post.writer}
+                body={post.body}
+                imgURL={post.imgURL}
+                comments={post.comments}
+              />
+            ))}
           </Section>
         </ScrollView>
       </SafeAreaView>
     </>
-  );
-};
+  )
+}
 
 const Section = styled.View`
   background-color: #fff;
   width: 100%;
-`;
+`
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -74,6 +82,6 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
-});
+})
 
-export default App;
+export default App

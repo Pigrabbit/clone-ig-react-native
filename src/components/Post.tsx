@@ -2,14 +2,17 @@ import React from 'react'
 import {Image, TouchableOpacity, Text, Dimensions} from 'react-native'
 import styled from 'styled-components/native'
 import {LOAD_MORE_COMMENT_MESSAGE} from '../constants/message'
+import {PostType} from '../data'
 import PostComment from './PostComment'
 import TouchableIcon from './TouchableIcon'
 
-export interface PostProps {
-  writer: string
-}
+// export interface PostProps {
+//   writer: string
+//   imgURL: string
+// }
 
-const Post: React.FC<PostProps> = (props) => {
+const Post: React.FC<PostType> = (props) => {
+  const {writer, body, imgURL, comments} = props
   const dimensions = Dimensions.get('window')
   const imageWidth = dimensions.width
   const imageHeight = imageWidth
@@ -39,14 +42,13 @@ const Post: React.FC<PostProps> = (props) => {
         source={{
           width: imageWidth,
           height: imageHeight,
-          uri:
-            'https://media.nkba.org/uploads/2017/09/Pine-Glades-Wetlands-Natural-Area-Sunset-Square-1024x1024.jpg',
+          uri: imgURL,
         }}
       />
       <PostControlPanel>
         <PostControlPanelLeft>
           <TouchableIcon
-            iconName="moreIcon"
+            iconName="likeIcon"
             onPress={() => console.log('like button tapped')}
           />
           <TouchableIcon
@@ -63,16 +65,20 @@ const Post: React.FC<PostProps> = (props) => {
       </PostControlPanel>
       <PostBody>
         <Text>
-          <HighlightedText>pigrabbit</HighlightedText> 여행마렵다... 언제 또
-          가지ㅜㅜ
+          <HighlightedText>{writer}</HighlightedText> {body}
         </Text>
       </PostBody>
       <PostCommentList>
         <PostCommentLoader onPress={() => console.log('load all comments')}>
           {LOAD_MORE_COMMENT_MESSAGE}
         </PostCommentLoader>
-        <PostComment writer="joedoe" content="우와 사진어디야?" />
-        <PostComment writer="resit" content="Awesome picture!" />
+        {comments.map((comment, idx) => (
+          <PostComment
+            key={idx}
+            writer={comment.writer}
+            content={comment.content}
+          />
+        ))}
       </PostCommentList>
     </>
   )
