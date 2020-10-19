@@ -1,17 +1,18 @@
-import React from 'react';
-import {Image, TouchableOpacity, Text, Dimensions} from 'react-native';
-import styled from 'styled-components/native';
-import {LOAD_MORE_COMMENT_MESSAGE} from '../constants/message';
-import PostComment from './PostComment';
+import React from 'react'
+import {Image, TouchableOpacity, Text, Dimensions} from 'react-native'
+import styled from 'styled-components/native'
+import {LOAD_MORE_COMMENT_MESSAGE} from '../constants/message'
+import PostComment from './PostComment'
+import TouchableIcon from './TouchableIcon'
 
 export interface PostProps {
-  writer: string;
+  writer: string
 }
 
 const Post: React.FC<PostProps> = (props) => {
-  const dimensions = Dimensions.get('window');
-  const imageWidth = dimensions.width;
-  const imageHeight = imageWidth;
+  const dimensions = Dimensions.get('window')
+  const imageWidth = dimensions.width
+  const imageHeight = imageWidth
 
   return (
     <>
@@ -29,11 +30,10 @@ const Post: React.FC<PostProps> = (props) => {
             pigrabbit
           </HighlightedText>
         </PostHeaderProfile>
-        <TouchableOpacity onPress={() => console.log('more button tapped')}>
-          <Icon
-            source={require('../../assets/icons/outline_more_horiz_black_48dp.png')}
-          />
-        </TouchableOpacity>
+        <TouchableIcon
+          iconName="moreIcon"
+          onPress={() => console.log('more button tapped')}
+        />
       </PostHeader>
       <Image
         source={{
@@ -45,25 +45,20 @@ const Post: React.FC<PostProps> = (props) => {
       />
       <PostControlPanel>
         <PostControlPanelLeft>
-          <TouchableOpacity onPress={() => console.log('like button tapped')}>
-            <Icon
-              source={require('../../assets/icons/outline_favorite_border_black_48dp.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => console.log('comment button tapped')}>
-            <Icon
-              source={require('../../assets/icons/outline_maps_ugc_black_48dp.png')}
-            />
-          </TouchableOpacity>
+          <TouchableIcon
+            iconName="moreIcon"
+            onPress={() => console.log('like button tapped')}
+          />
+          <TouchableIcon
+            iconName="commentIcon"
+            onPress={() => console.log('comment button tapped')}
+          />
         </PostControlPanelLeft>
         <PostControlPanelRight>
-          <TouchableOpacity
-            onPress={() => console.log('archive button tapped')}>
-            <Icon
-              source={require('../../assets/icons/outline_archive_black_48dp.png')}
-            />
-          </TouchableOpacity>
+          <TouchableIcon
+            iconName="archiveIcon"
+            onPress={() => console.log('archive button tapped')}
+          />
         </PostControlPanelRight>
       </PostControlPanel>
       <PostBody>
@@ -80,55 +75,55 @@ const Post: React.FC<PostProps> = (props) => {
         <PostComment writer="resit" content="Awesome picture!" />
       </PostCommentList>
     </>
-  );
-};
+  )
+}
 
 const PostHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-`;
+`
 
 const PostHeaderProfile = styled.View`
   flex-direction: row;
   align-items: center;
-`;
+`
 
 const PostControlPanel = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-`;
+`
 
 const Icon = styled.Image`
   width: 36px;
   height: 36px;
   margin: 0 5px;
-`;
+`
 
 const PostControlPanelLeft = styled.View`
   flex-direction: row;
-`;
+`
 
-const PostControlPanelRight = styled.View``;
+const PostControlPanelRight = styled.View``
 
 const PostBody = styled.View`
   margin: 10px;
-`;
+`
 
 export const HighlightedText = styled.Text`
   font-weight: 700;
-`;
+`
 
 const PostCommentList = styled.View`
   margin: 10px;
-`;
+`
 
 const PostCommentLoader = styled.Text`
   margin: 5px 0;
   color: #aaaaaa;
-`;
+`
 
-export default Post;
+export default Post
