@@ -7,10 +7,10 @@ export type PostType = {
   writer: string
   body: string
   imgURL: string
-  comments: Comment[]
+  comments: CommentType[]
 }
 
-export const FETCHED_POSTS: Post[] = [
+export const FETCHED_POSTS: PostType[] = [
   {
     writer: 'pigrabbit',
     body: '여행마렵다... 언제 또 가지ㅜㅜ',
@@ -23,6 +23,17 @@ export const FETCHED_POSTS: Post[] = [
       {
         writer: 'resit',
         content: 'Awesome picture!'
+      }
+    ]
+  },
+  {
+    writer: 'myrib',
+    body: '터키터키터키',
+    imgURL: 'https://static.toiimg.com/photo/64986478/Cappadocia.jpg?width=748&resize=4',
+    comments: [
+      {
+        writer: 'donald',
+        content: '열기구 슈우웅'
       }
     ]
   }

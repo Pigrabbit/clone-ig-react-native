@@ -8,6 +8,7 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import {
   SafeAreaView,
@@ -16,48 +17,31 @@ import {
   View,
   Text,
   StatusBar,
-  Dimensions,
 } from 'react-native'
 
-import {Colors} from 'react-native/Libraries/NewAppScreen'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 import styled from 'styled-components/native'
-import Post from './src/components/Post'
-import {FETCHED_POSTS} from './src/data'
+import HomeScreenStack from './src/routes'
 
-declare const global: {HermesInternal: null | {}}
+declare const global: { HermesInternal: null | {} }
 
 const App = () => {
-  const posts = FETCHED_POSTS
-  const dimensions = Dimensions.get('window')
-  const imageWidth = dimensions.width
-  const imageHeight = imageWidth
-
   return (
-    <>
+    <NavigationContainer>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
           <Section>
-            {FETCHED_POSTS.map((post, idx) => (
-              <Post
-                key={idx}
-                writer={post.writer}
-                body={post.body}
-                imgURL={post.imgURL}
-                comments={post.comments}
-              />
-            ))}
+            <HomeScreenStack />
           </Section>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </NavigationContainer>
   )
 }
 

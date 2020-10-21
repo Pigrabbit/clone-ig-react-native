@@ -6,11 +6,6 @@ import {PostType} from '../data'
 import PostComment from './PostComment'
 import TouchableIcon from './TouchableIcon'
 
-// export interface PostProps {
-//   writer: string
-//   imgURL: string
-// }
-
 const Post: React.FC<PostType> = (props) => {
   const {writer, body, imgURL, comments} = props
   const dimensions = Dimensions.get('window')
@@ -30,7 +25,7 @@ const Post: React.FC<PostType> = (props) => {
             }}
           />
           <HighlightedText style={{fontSize: 16, marginLeft: 8}}>
-            pigrabbit
+            {writer}
           </HighlightedText>
         </PostHeaderProfile>
         <TouchableIcon
@@ -101,12 +96,6 @@ const PostControlPanel = styled.View`
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-`
-
-const Icon = styled.Image`
-  width: 36px;
-  height: 36px;
-  margin: 0 5px;
 `
 
 const PostControlPanelLeft = styled.View`
