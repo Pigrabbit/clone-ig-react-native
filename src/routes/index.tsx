@@ -1,9 +1,9 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-import CommentScreen from '../screens/CommentScreen'
-import HomeScreen from '../screens/HomeScreen'
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import CommentScreen from '../screens/CommentScreen';
+import HomeScreen from '../screens/HomeScreen';
 
-const HomeStack = createStackNavigator()
+const HomeStack = createStackNavigator();
 
 const HomeScreenStack: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const HomeScreenStack: React.FC = () => {
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="Comment" component={CommentScreen} />
     </HomeStack.Navigator>
-  )
-}
+  );
+};
 
-export default HomeScreenStack
+export default HomeScreenStack;

@@ -1,10 +1,11 @@
 import React from 'react'
+import { ScrollView } from 'react-native-gesture-handler'
 import Post from '../components/Post'
 import { FETCHED_POSTS } from '../data'
 
 const HomeScreen: React.FC = () => {
   return (
-    <>
+    <ScrollView>
       {FETCHED_POSTS.map((post, idx) => (
         <Post
           key={idx}
@@ -14,7 +15,7 @@ const HomeScreen: React.FC = () => {
           comments={post.comments}
         />
       ))}
-    </>
+    </ScrollView>
   )
 }
 

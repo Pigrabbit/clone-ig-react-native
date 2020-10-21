@@ -1,16 +1,16 @@
-import React from 'react'
-import {Image, TouchableOpacity, Text, Dimensions} from 'react-native'
-import styled from 'styled-components/native'
-import {LOAD_MORE_COMMENT_MESSAGE} from '../constants/message'
-import {PostType} from '../data'
-import PostComment from './PostComment'
-import TouchableIcon from './TouchableIcon'
+import React from 'react';
+import { Image, TouchableOpacity, Text, Dimensions } from 'react-native';
+import styled from 'styled-components/native';
+import { LOAD_MORE_COMMENT_MESSAGE } from '../constants/message';
+import { PostType } from '../data';
+import PostComment from './PostComment';
+import TouchableIcon from './TouchableIcon';
 
 const Post: React.FC<PostType> = (props) => {
-  const {writer, body, imgURL, comments} = props
-  const dimensions = Dimensions.get('window')
-  const imageWidth = dimensions.width
-  const imageHeight = imageWidth
+  const { writer, body, imgURL, comments } = props;
+  const dimensions = Dimensions.get('window');
+  const imageWidth = dimensions.width;
+  const imageHeight = imageWidth;
 
   return (
     <>
@@ -24,7 +24,7 @@ const Post: React.FC<PostType> = (props) => {
                 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
             }}
           />
-          <HighlightedText style={{fontSize: 16, marginLeft: 8}}>
+          <HighlightedText style={{ fontSize: 16, marginLeft: 8 }}>
             {writer}
           </HighlightedText>
         </PostHeaderProfile>
@@ -76,49 +76,49 @@ const Post: React.FC<PostType> = (props) => {
         ))}
       </PostCommentList>
     </>
-  )
-}
+  );
+};
 
 const PostHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-`
+`;
 
 const PostHeaderProfile = styled.View`
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const PostControlPanel = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-`
+`;
 
 const PostControlPanelLeft = styled.View`
   flex-direction: row;
-`
+`;
 
-const PostControlPanelRight = styled.View``
+const PostControlPanelRight = styled.View``;
 
 const PostBody = styled.View`
   margin: 10px;
-`
+`;
 
 export const HighlightedText = styled.Text`
   font-weight: 700;
-`
+`;
 
 const PostCommentList = styled.View`
   margin: 10px;
-`
+`;
 
 const PostCommentLoader = styled.Text`
   margin: 5px 0;
   color: #aaaaaa;
-`
+`;
 
-export default Post
+export default Post;

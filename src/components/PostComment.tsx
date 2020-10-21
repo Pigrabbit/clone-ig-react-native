@@ -1,19 +1,19 @@
-import React from 'react'
-import styled from 'styled-components/native'
-import {CommentType} from '../data'
-import {HighlightedText} from './Post'
+import React from 'react';
+import styled from 'styled-components/native';
+import { CommentType } from '../data';
+import { HighlightedText } from './Post';
 
 const PostComment: React.FC<CommentType> = (props) => {
-  const {writer, content} = props
+  const { writer, content } = props;
   return (
     <Container>
       <HighlightedText>{writer}</HighlightedText> {content}
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.Text`
   margin: 5px 0;
-`
+`;
 
-export default PostComment
+export default PostComment;

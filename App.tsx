@@ -8,18 +8,18 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native'
-import React from 'react'
-import HomeScreenStack from './src/routes'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeScreenStack from './src/routes';
 
-declare const global: { HermesInternal: null | {} }
+declare const global: { HermesInternal: null | {} };
 
 const App = () => {
   return (
     <NavigationContainer>
       <HomeScreenStack />
     </NavigationContainer>
-  )
-}
+  );
+};
 
-export default App
+export default App;
