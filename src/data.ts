@@ -1,14 +1,5 @@
-export type CommentType = {
-  writer: string
-  content: string
-}
+import { PostType } from "./components/Post"
 
-export type PostType = {
-  writer: string
-  body: string
-  imgURL: string
-  comments: CommentType[]
-}
 
 export const FETCHED_POSTS: PostType[] = [
   {

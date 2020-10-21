@@ -3,7 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CommentScreen from '../screens/CommentScreen';
 import HomeScreen from '../screens/HomeScreen';
 
-const HomeStack = createStackNavigator();
+export type HomeStackParamList = {
+  Home: undefined
+  Comment: undefined
+}
+const HomeStack = createStackNavigator<HomeStackParamList>();
 
 const HomeScreenStack: React.FC = () => {
   return (

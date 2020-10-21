@@ -1,13 +1,24 @@
 import React from 'react';
-import { Image, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { Image, Text, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { LOAD_MORE_COMMENT_MESSAGE } from '../constants/message';
-import { PostType } from '../data';
-import PostComment from './PostComment';
+import PostComment, { CommentType } from './PostComment';
 import TouchableIcon from './TouchableIcon';
 
-const Post: React.FC<PostType> = (props) => {
-  const { writer, body, imgURL, comments } = props;
+export type PostType = {
+  writer: string;
+  body: string;
+  imgURL: string;
+  comments: CommentType[];
+};
+
+interface PostProps {
+  post: PostType
+  onCommentPress: () => void
+}
+
+const Post: React.FC<PostProps> = (props) => {
+  const { writer, body, imgURL, comments } = props.post;
   const dimensions = Dimensions.get('window');
   const imageWidth = dimensions.width;
   const imageHeight = imageWidth;
@@ -64,7 +75,7 @@ const Post: React.FC<PostType> = (props) => {
         </Text>
       </PostBody>
       <PostCommentList>
-        <PostCommentLoader onPress={() => console.log('load all comments')}>
+        <PostCommentLoader onPress={props.onCommentPress}>
           {LOAD_MORE_COMMENT_MESSAGE}
         </PostCommentLoader>
         {comments.map((comment, idx) => (
