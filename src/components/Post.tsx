@@ -13,8 +13,8 @@ export type PostType = {
 };
 
 interface PostProps {
-  post: PostType
-  onCommentPress: () => void
+  post: PostType;
+  onCommentPress: (comments: CommentType[]) => void;
 }
 
 const Post: React.FC<PostProps> = (props) => {
@@ -75,7 +75,10 @@ const Post: React.FC<PostProps> = (props) => {
         </Text>
       </PostBody>
       <PostCommentList>
-        <PostCommentLoader onPress={props.onCommentPress}>
+        <PostCommentLoader
+          onPress={() => {
+            props.onCommentPress(comments);
+          }}>
           {LOAD_MORE_COMMENT_MESSAGE}
         </PostCommentLoader>
         {comments.map((comment, idx) => (

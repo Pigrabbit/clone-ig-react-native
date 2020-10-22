@@ -2,10 +2,13 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import CommentScreen from '../screens/CommentScreen';
 import HomeScreen from '../screens/HomeScreen';
+import { CommentType } from '../components/PostComment';
 
 export type HomeStackParamList = {
   Home: undefined
-  Comment: undefined
+  Comment: {
+    comments: CommentType[]
+  }
 }
 const HomeStack = createStackNavigator<HomeStackParamList>();
 

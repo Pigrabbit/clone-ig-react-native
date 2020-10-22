@@ -1,6 +1,5 @@
 import { PostType } from "./components/Post"
 
-
 export const FETCHED_POSTS: PostType[] = [
   {
     writer: 'pigrabbit',

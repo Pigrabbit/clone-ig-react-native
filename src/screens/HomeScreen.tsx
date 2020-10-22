@@ -5,20 +5,22 @@ import { FETCHED_POSTS } from '../data';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { HomeStackParamList } from '../routes';
+import { CommentType } from '../components/PostComment';
 
-export type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>
-export type HomeScreenNavigationProp = StackNavigationProp<HomeStackParamList, 'Home'>
+export type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
+export type HomeScreenNavigationProp = StackNavigationProp<
+  HomeStackParamList,
+  'Home'
+>;
 
 interface Props {
-  route: HomeScreenRouteProp
-  navigation: HomeScreenNavigationProp
+  route: HomeScreenRouteProp;
+  navigation: HomeScreenNavigationProp;
 }
 
-const HomeScreen: React.FC<Props> = ({
-  navigation,
-}) => {
-  const onCommentPress = () => {
-    navigation.navigate('Comment');
+const HomeScreen: React.FC<Props> = ({ navigation }) => {
+  const onCommentPress = (comments: CommentType[]) => {
+    navigation.navigate('Comment', { comments });
   };
 
   return (
