@@ -19,8 +19,7 @@ interface Props {
 
 const CommentScreen: React.FC<Props> = ({ route }) => {
   const { comments } = route.params;
-  // console.log(comments)
-  // <Text>Comment Screen</Text>;
+  
   return (
     <ScrollView>
       {comments.map((comment, idx) => (

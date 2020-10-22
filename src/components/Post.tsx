@@ -74,21 +74,12 @@ const Post: React.FC<PostProps> = (props) => {
           <HighlightedText>{writer}</HighlightedText> {body}
         </Text>
       </PostBody>
-      <PostCommentList>
-        <PostCommentLoader
-          onPress={() => {
-            props.onCommentPress(comments);
-          }}>
-          {LOAD_MORE_COMMENT_MESSAGE}
-        </PostCommentLoader>
-        {comments.map((comment, idx) => (
-          <PostComment
-            key={idx}
-            writer={comment.writer}
-            content={comment.content}
-          />
-        ))}
-      </PostCommentList>
+      <PostCommentLoader
+        onPress={() => {
+          props.onCommentPress(comments);
+        }}>
+        {LOAD_MORE_COMMENT_MESSAGE}
+      </PostCommentLoader>
     </>
   );
 };
@@ -126,12 +117,8 @@ export const HighlightedText = styled.Text`
   font-weight: 700;
 `;
 
-const PostCommentList = styled.View`
-  margin: 10px;
-`;
-
 const PostCommentLoader = styled.Text`
-  margin: 5px 0;
+  margin: 0 10px;
   color: #aaaaaa;
 `;
 
