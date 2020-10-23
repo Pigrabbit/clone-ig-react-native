@@ -1,4 +1,5 @@
-import { PostType } from "./components/Post"
+import { PostType } from "./stores/posts/types";
+
 
 export const FETCHED_POSTS: PostType[] = [
   {

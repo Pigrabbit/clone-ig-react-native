@@ -1,4 +1,18 @@
-import { CommentType } from '../../components/PostComment';
+export type CommentType = {
+  writer: string;
+  content: string;
+};
+
+export type PostType = {
+  writer: string;
+  body: string;
+  imgURL: string;
+  comments: CommentType[];
+};
+
+export interface PostState {
+  postList: PostType[]
+}
 
 export const WRITE_COMMENT = 'WRITE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
@@ -6,12 +20,12 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 interface writeCommentAction {
   type: typeof WRITE_COMMENT;
-  comment: CommentType;
+  commentList: CommentType[];
 }
 
 interface editCommentAction {
   type: typeof EDIT_COMMENT;
-  comment: CommentType;
+  commentList: CommentType[];
 }
 
 interface deleteCommentAction {

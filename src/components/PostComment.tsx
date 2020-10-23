@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { CommentType } from '../stores/posts/types';
 import { HighlightedText } from './Post';
-
-export type CommentType = {
-  writer: string;
-  content: string;
-};
 
 const PostComment: React.FC<CommentType> = (props) => {
   const { writer, content } = props;

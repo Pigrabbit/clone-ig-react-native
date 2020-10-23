@@ -2,7 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import CommentScreen from '../screens/CommentScreen';
 import HomeScreen from '../screens/HomeScreen';
-import { CommentType } from '../components/PostComment';
+import { CommentType } from '../stores/posts/types';
+
 
 export type HomeStackParamList = {
   Home: undefined

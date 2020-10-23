@@ -5,7 +5,7 @@ import { FETCHED_POSTS } from '../data';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { HomeStackParamList } from '../routes';
-import { CommentType } from '../components/PostComment';
+import { CommentType } from '../stores/posts/types';
 
 type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
 type HomeScreenNavigationProp = StackNavigationProp<

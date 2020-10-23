@@ -2,15 +2,8 @@ import React from 'react';
 import { Dimensions, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { LOAD_MORE_COMMENT_MESSAGE } from '../constants/message';
-import { CommentType } from './PostComment';
+import { CommentType, PostType } from '../stores/posts/types';
 import TouchableIcon from './TouchableIcon';
-
-export type PostType = {
-  writer: string;
-  body: string;
-  imgURL: string;
-  comments: CommentType[];
-};
 
 interface PostProps {
   post: PostType;
