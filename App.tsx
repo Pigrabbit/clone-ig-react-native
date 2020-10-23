@@ -11,14 +11,21 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreenStack from './src/routes';
+import { rootReducer } from './src/stores';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
 
 declare const global: { HermesInternal: null | {} };
 
+export const store = createStore(rootReducer);
+
 const App = () => {
   return (
-    <NavigationContainer>
-      <HomeScreenStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <HomeScreenStack />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
