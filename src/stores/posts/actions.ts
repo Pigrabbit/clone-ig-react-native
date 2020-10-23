@@ -6,22 +6,35 @@ import {
   WRITE_COMMENT,
 } from './types';
 
-export function writeComment(commentList: CommentType[]): PostActionType {
+export function writeComment(
+  postId: number,
+  comment: CommentType,
+): PostActionType {
   return {
     type: WRITE_COMMENT,
-    commentList,
+    payload: {
+      postId,
+      comment,
+    },
   };
 }
 
-export function editComment(commentList: CommentType[]): PostActionType {
+export function editComment(
+  postId: number,
+  comment: CommentType,
+): PostActionType {
   return {
     type: EDIT_COMMENT,
-    commentList,
+    payload: {
+      postId,
+      comment,
+    },
   };
 }
 
-export function deleteComment(): PostActionType {
+export function deleteComment(postId: number): PostActionType {
   return {
     type: DELETE_COMMENT,
+    postId,
   };
 }
