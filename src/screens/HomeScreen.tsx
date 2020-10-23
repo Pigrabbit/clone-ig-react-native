@@ -7,8 +7,8 @@ import { RouteProp } from '@react-navigation/native';
 import { HomeStackParamList } from '../routes';
 import { CommentType } from '../components/PostComment';
 
-export type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
-export type HomeScreenNavigationProp = StackNavigationProp<
+type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
+type HomeScreenNavigationProp = StackNavigationProp<
   HomeStackParamList,
   'Home'
 >;

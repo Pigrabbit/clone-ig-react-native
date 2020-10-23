@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, Text, Dimensions } from 'react-native';
+import { Dimensions, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { LOAD_MORE_COMMENT_MESSAGE } from '../constants/message';
-import PostComment, { CommentType } from './PostComment';
+import { CommentType } from './PostComment';
 import TouchableIcon from './TouchableIcon';
 
 export type PostType = {
