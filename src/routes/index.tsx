@@ -1,16 +1,14 @@
-import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
 import CommentScreen from '../screens/CommentScreen';
 import HomeScreen from '../screens/HomeScreen';
-import { CommentType } from '../stores/posts/types';
-
 
 export type HomeStackParamList = {
-  Home: undefined
+  Home: undefined;
   Comment: {
-    comments: CommentType[]
-  }
-}
+    postId: number;
+  };
+};
 const HomeStack = createStackNavigator<HomeStackParamList>();
 
 const HomeScreenStack: React.FC = () => {

@@ -2,10 +2,13 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { KeyboardAvoidingView } from 'react-native';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
+import CommentInputPanel from '../components/CommentInputPanel';
 import PostComment from '../components/PostComment';
-import TouchableIcon from '../components/TouchableIcon';
 import { HomeStackParamList } from '../routes';
+import { RootState } from '../stores';
+import { PostState } from '../stores/posts/types';
 
 type CommentScreenRouteProp = RouteProp<HomeStackParamList, 'Comment'>;
 type CommentScreenNavigationProp = StackNavigationProp<
@@ -19,12 +22,16 @@ interface Props {
 }
 
 const CommentScreen: React.FC<Props> = ({ route }) => {
-  const { comments } = route.params;
+  const { postId } = route.params;
+  const { postList } = useSelector<RootState, PostState>(
+    (rootState) => rootState.post,
+  );
+  const commentList = postList.filter((post) => post.id === postId)[0].comments;
 
   return (
     <KeyboardAvoidingView>
       <StyledScrollView>
-        {comments.map((comment, idx) => (
+        {commentList.map((comment, idx) => (
           <PostComment
             key={idx}
             id={comment.id}
@@ -32,13 +39,7 @@ const CommentScreen: React.FC<Props> = ({ route }) => {
             content={comment.content}
           />
         ))}
-        <CommentInputPanel>
-          <CommentInput placeholder="Write comment here..." />
-          <TouchableIcon
-            iconName="sendIcon"
-            onPress={() => console.log('submit comment')}
-          />
-        </CommentInputPanel>
+        <CommentInputPanel />
       </StyledScrollView>
     </KeyboardAvoidingView>
   );
@@ -46,19 +47,6 @@ const CommentScreen: React.FC<Props> = ({ route }) => {
 
 const StyledScrollView = styled.ScrollView`
   margin: 10px;
-`;
-
-const CommentInputPanel = styled.View`
-  padding: 0 5px 0 0;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const CommentInput = styled.TextInput`
-  height: 36px;
-  width: 85%;
-  border-color: #000000;
-  border-bottom-width: 1px;
 `;
 
 export default CommentScreen;
