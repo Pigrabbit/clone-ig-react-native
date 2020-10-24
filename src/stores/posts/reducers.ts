@@ -3,6 +3,7 @@ import {
   EDIT_COMMENT,
   PostActionType,
   PostState,
+  SELECT_COMMENT_TO_EDIT,
   WRITE_COMMENT,
 } from './types';
 
@@ -42,6 +43,7 @@ const initialState: PostState = {
       ],
     },
   ],
+  editInProgessComment: null
 };
 
 export function postReducer(
@@ -53,27 +55,31 @@ export function postReducer(
       return {
         ...state,
         postList: state.postList.map((post) => {
-          if (post.id !== action.payload.postId) return post;
+          if (post.id !== action.payload.postId) return { ...post };
           return {
             ...post,
             comments: post.comments.concat({
               ...action.payload.comment,
               id: post.comments.length + 1,
-              writer: 'pigrabbit',
             }),
           };
         }),
       };
+    case SELECT_COMMENT_TO_EDIT:
+      return {
+        ...state,
+        editInProgessComment: action.payload.editInProgressComment
+      }
     case EDIT_COMMENT:
       return {
         ...state,
         postList: state.postList.map((post) => {
-          if (post.id !== action.payload.postId) return post;
+          if (post.id !== action.payload.postId) return { ...post };
           return {
             ...post,
             comments: post.comments.map((comment) => {
-              if (comment.id !== action.payload.comment.id) return comment;
-              return action.payload.comment;
+              if (comment.id !== action.payload.comment.id) return { ...comment };
+              return { ...comment, content: action.payload.comment.content };
             }),
           };
         }),
@@ -82,7 +88,7 @@ export function postReducer(
       return {
         ...state,
         postList: state.postList.map((post) => {
-          if (post.id !== action.postId) return post;
+          if (post.id !== action.postId) return { ...post };
           return {
             ...post,
             comments: post.comments.filter(

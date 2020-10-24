@@ -3,6 +3,7 @@ import {
   DELETE_COMMENT,
   EDIT_COMMENT,
   PostActionType,
+  SELECT_COMMENT_TO_EDIT,
   WRITE_COMMENT,
 } from './types';
 
@@ -15,6 +16,17 @@ export function writeComment(
     payload: {
       postId,
       comment,
+    },
+  };
+}
+
+export function selectCommentToEdit(
+  editInProgressComment: CommentType | null
+): PostActionType {
+  return {
+    type: SELECT_COMMENT_TO_EDIT,
+    payload: {
+      editInProgressComment
     },
   };
 }

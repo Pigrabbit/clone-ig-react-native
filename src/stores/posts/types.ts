@@ -14,10 +14,12 @@ export type PostType = {
 
 export interface PostState {
   postList: PostType[];
+  editInProgessComment: CommentType | null
 }
 
 export const WRITE_COMMENT = 'WRITE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const SELECT_COMMENT_TO_EDIT = 'SELECT_COMMENT_TO_EDIT'
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 interface writeCommentAction {
@@ -26,6 +28,13 @@ interface writeCommentAction {
     postId: number
     comment: CommentType
   };
+}
+
+interface selectCommentToEditAction {
+  type: typeof SELECT_COMMENT_TO_EDIT
+  payload: {
+    editInProgressComment: CommentType | null;
+  }
 }
 
 interface editCommentAction {
@@ -43,5 +52,6 @@ interface deleteCommentAction {
 
 export type PostActionType =
   | writeCommentAction
+  | selectCommentToEditAction
   | editCommentAction
   | deleteCommentAction;
