@@ -3,6 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components/native';
 import Post from '../components/Post';
 import { HomeStackParamList } from '../routes';
 import { RootState } from '../stores';
@@ -25,12 +26,16 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <StyledScrollView>
       {postList.map((post, idx) => (
         <Post key={idx} post={post} onCommentPress={onCommentPress} />
       ))}
-    </ScrollView>
+    </StyledScrollView>
   );
 };
+
+const StyledScrollView = styled.ScrollView`
+  margin: 10px 0 20px 0;
+`
 
 export default HomeScreen;
