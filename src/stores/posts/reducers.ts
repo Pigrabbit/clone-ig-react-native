@@ -3,7 +3,7 @@ import {
   EDIT_COMMENT,
   PostActionType,
   PostState,
-  WRITE_COMMENT
+  WRITE_COMMENT,
 } from './types';
 
 const initialState: PostState = {
@@ -56,7 +56,11 @@ export function postReducer(
           if (post.id !== action.payload.postId) return post;
           return {
             ...post,
-            comments: post.comments.concat(action.payload.comment),
+            comments: post.comments.concat({
+              ...action.payload.comment,
+              id: post.comments.length + 1,
+              writer: 'pigrabbit',
+            }),
           };
         }),
       };

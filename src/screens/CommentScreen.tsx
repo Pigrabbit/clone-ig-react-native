@@ -39,7 +39,7 @@ const CommentScreen: React.FC<Props> = ({ route }) => {
             content={comment.content}
           />
         ))}
-        <CommentInputPanel />
+        <CommentInputPanel postId={postId}/>
       </StyledScrollView>
     </KeyboardAvoidingView>
   );

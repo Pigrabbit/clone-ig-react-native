@@ -1,14 +1,34 @@
 import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
+import { WRITE_COMMENT } from '../stores/posts/types';
 import TouchableIcon from './TouchableIcon';
 
-const CommentInputPanel: React.FC = () => {
+interface Props {
+  postId: number;
+}
+
+const CommentInputPanel: React.FC<Props> = (props) => {
+  const { postId } = props;
+  const [text, setText] = useState<string>('');
+  const dispatch = useDispatch();
+
   return (
     <Container>
-      <CommentInput placeholder="Write comment here..." />
+      <CommentInput
+        value={text}
+        onChangeText={(text) => setText(text)}
+        placeholder="Write comment here..."
+      />
       <TouchableIcon
         iconName="sendIcon"
-        onPress={() => console.log('submit comment')}
+        onPress={() =>
+          dispatch({
+            type: WRITE_COMMENT,
+            payload: { postId, comment: { content: text } },
+          })
+        }
       />
     </Container>
   );
