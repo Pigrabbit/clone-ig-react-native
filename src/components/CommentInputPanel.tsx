@@ -29,8 +29,11 @@ const CommentInputPanel: React.FC<Props> = (props) => {
     if (editInProgessComment !== null) setText(editInProgessComment.content);
   }, [editInProgessComment]);
 
+  const isEdittingMode = editInProgessComment !== null;
+  const isInputEmpty = text.length === 0;
+
   const submitPressHandler = () => {
-    if (editInProgessComment === null) {
+    if (!isEdittingMode && !isInputEmpty) {
       dispatch({
         type: WRITE_COMMENT,
         payload: {
@@ -39,7 +42,7 @@ const CommentInputPanel: React.FC<Props> = (props) => {
         },
       });
       setText('');
-    } else {
+    } else if (isEdittingMode) {
       dispatch({
         type: EDIT_COMMENT,
         payload: {
