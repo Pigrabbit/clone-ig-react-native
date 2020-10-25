@@ -6,6 +6,7 @@ import {
   SELECT_COMMENT_TO_EDIT,
   WRITE_COMMENT,
 } from './types';
+import produce from 'immer';
 
 const initialState: PostState = {
   postList: [
@@ -43,7 +44,7 @@ const initialState: PostState = {
       ],
     },
   ],
-  editInProgessComment: null
+  editInProgessComment: null,
 };
 
 export function postReducer(
@@ -52,51 +53,39 @@ export function postReducer(
 ): PostState {
   switch (action.type) {
     case WRITE_COMMENT:
-      return {
-        ...state,
-        postList: state.postList.map((post) => {
-          if (post.id !== action.payload.postId) return { ...post };
-          return {
-            ...post,
-            comments: post.comments.concat({
-              ...action.payload.comment,
-              id: post.comments.length + 1,
-            }),
-          };
-        }),
-      };
+      return produce(state, (draftState) => {
+        const currentPost = draftState.postList.filter(
+          (post) => post.id === action.payload.postId,
+        )[0];
+        currentPost.comments.push({
+          ...action.payload.comment,
+          id: currentPost.comments.length + 1,
+        });
+      });
+
     case SELECT_COMMENT_TO_EDIT:
-      return {
-        ...state,
-        editInProgessComment: action.payload.editInProgressComment
-      }
+      return produce(state, (draftState) => {
+        draftState.editInProgessComment = action.payload.editInProgressComment;
+      });
     case EDIT_COMMENT:
-      return {
-        ...state,
-        postList: state.postList.map((post) => {
-          if (post.id !== action.payload.postId) return { ...post };
-          return {
-            ...post,
-            comments: post.comments.map((comment) => {
-              if (comment.id !== action.payload.comment.id) return { ...comment };
-              return { ...comment, content: action.payload.comment.content };
-            }),
-          };
-        }),
-      };
+      return produce(state, (draftState) => {
+        const currentPost = draftState.postList.filter(
+          (post) => post.id === action.payload.postId,
+        )[0];
+        const currentComment = currentPost.comments.filter(
+          (comment) => comment.id === action.payload.comment.id,
+        )[0];
+        currentComment.content = action.payload.comment.content;
+      });
     case DELETE_COMMENT:
-      return {
-        ...state,
-        postList: state.postList.map((post) => {
-          if (post.id !== action.postId) return { ...post };
-          return {
-            ...post,
-            comments: post.comments.filter(
-              (comment) => comment.id !== action.postId,
-            ),
-          };
-        }),
-      };
+      return produce(state, (draftState) => {
+        const currentPost = draftState.postList.filter(
+          (post) => post.id === action.postId,
+        )[0];
+        currentPost.comments = currentPost.comments.filter(
+          (comment) => comment.id !== action.postId,
+        );
+      });
     default:
       return { ...state };
   }
