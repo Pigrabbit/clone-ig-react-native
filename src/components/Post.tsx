@@ -33,6 +33,8 @@ const Post: React.FC<PostProps> = (props) => {
           </HighlightedText>
         </PostHeaderProfile>
         <TouchableIcon
+          width={36}
+          height={36}
           iconName="moreIcon"
           onPress={() => console.log('more button tapped')}
         />
@@ -47,16 +49,22 @@ const Post: React.FC<PostProps> = (props) => {
       <PostControlPanel>
         <PostControlPanelLeft>
           <TouchableIcon
+            width={36}
+            height={36}
             iconName="likeIcon"
             onPress={() => console.log('like button tapped')}
           />
           <TouchableIcon
+            width={36}
+            height={36}
             iconName="commentIcon"
             onPress={() => console.log('comment button tapped')}
           />
         </PostControlPanelLeft>
         <PostControlPanelRight>
           <TouchableIcon
+            width={36}
+            height={36}
             iconName="archiveIcon"
             onPress={() => console.log('archive button tapped')}
           />

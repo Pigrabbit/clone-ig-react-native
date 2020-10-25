@@ -45,8 +45,7 @@ const CommentInputPanel: React.FC<Props> = (props) => {
         payload: {
           postId,
           comment: {
-            id: editInProgessComment.id,
-            writer: editInProgessComment.writer,
+            ...editInProgessComment,
             content: text,
           },
         },
@@ -68,7 +67,12 @@ const CommentInputPanel: React.FC<Props> = (props) => {
         onChangeText={(text) => setText(text)}
         placeholder="Write comment here..."
       />
-      <TouchableIcon iconName="sendIcon" onPress={submitPressHandler} />
+      <TouchableIcon
+        width={24}
+        height={24}
+        iconName="sendIcon"
+        onPress={submitPressHandler}
+      />
     </Container>
   );
 };
@@ -81,7 +85,7 @@ const Container = styled.View`
 
 const CommentInput = styled.TextInput`
   height: 36px;
-  width: 85%;
+  width: 90%;
   border-color: #000000;
   border-bottom-width: 1px;
 `;
