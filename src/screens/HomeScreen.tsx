@@ -1,9 +1,12 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
+import { Dimensions, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import Post from '../components/Post';
+import SwippableRow from '../components/SwippableRow';
 import { HomeStackParamList } from '../routes';
 import { RootState } from '../stores';
 import { PostState } from '../stores/posts/types';
@@ -26,6 +29,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <StyledScrollView>
+      <SwippableRow />
       {postList.map((post, idx) => (
         <Post key={idx} post={post} onCommentPress={onCommentPress} />
       ))}
