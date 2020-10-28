@@ -1,6 +1,9 @@
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
+import { MOCK_WRITER } from '../constants/mock';
+import { SELECT_COMMENT_TO_EDIT } from '../stores/posts/types';
 import { HighlightedText } from './Post';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -12,7 +15,20 @@ interface Props {
 }
 
 const SwippableComment: React.FC<Props> = (props) => {
-  const { writer, content } = props;
+  const { id, writer, content } = props;
+  const dispatch = useDispatch();
+  const editPressHandler = () => {
+    dispatch({
+      type: SELECT_COMMENT_TO_EDIT,
+      payload: {
+        editInProgressComment: {
+          id,
+          writer,
+          content,
+        },
+      },
+    });
+  };
 
   return (
     <Container
@@ -24,14 +40,16 @@ const SwippableComment: React.FC<Props> = (props) => {
           <HighlightedText>{writer}</HighlightedText> {content}
         </Text>
       </MainSlider>
-      <ControlSlider>
-        <ControlSliderEdit>
-          <Text>Edit</Text>
-        </ControlSliderEdit>
-        <ControlSliderDelete>
-          <Text>Delete</Text>
-        </ControlSliderDelete>
-      </ControlSlider>
+      {props.writer === MOCK_WRITER ? (
+        <ControlSlider>
+          <ControlSliderEdit onPress={editPressHandler}>
+            <Text>Edit</Text>
+          </ControlSliderEdit>
+          <ControlSliderDelete>
+            <Text>Delete</Text>
+          </ControlSliderDelete>
+        </ControlSlider>
+      ) : null}
     </Container>
   );
 };
@@ -42,7 +60,6 @@ const MainSlider = styled.View`
   width: ${deviceWidth}px;
   height: 48px;
   justify-content: center;
-  /* background-color: #ababab; */
 `;
 
 const ControlSlider = styled.View`
@@ -54,6 +71,7 @@ const ControlSlider = styled.View`
 const colors = {
   red: '#eb4d4b',
   yellow: '#f9ca24',
+  gray: '#ababab',
 };
 
 const ControlSliderEdit = styled.TouchableOpacity`
