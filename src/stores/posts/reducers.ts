@@ -80,10 +80,10 @@ export function postReducer(
     case DELETE_COMMENT:
       return produce(state, (draftState) => {
         const currentPost = draftState.postList.filter(
-          (post) => post.id === action.postId,
+          (post) => post.id === action.payload.postId,
         )[0];
         currentPost.comments = currentPost.comments.filter(
-          (comment) => comment.id !== action.postId,
+          (comment) => comment.id !== action.payload.commentId,
         );
       });
     default:

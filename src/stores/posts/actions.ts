@@ -21,12 +21,12 @@ export function writeComment(
 }
 
 export function selectCommentToEdit(
-  editInProgressComment: CommentType | null
+  editInProgressComment: CommentType | null,
 ): PostActionType {
   return {
     type: SELECT_COMMENT_TO_EDIT,
     payload: {
-      editInProgressComment
+      editInProgressComment,
     },
   };
 }
@@ -44,9 +44,15 @@ export function editComment(
   };
 }
 
-export function deleteComment(postId: number): PostActionType {
+export function deleteComment(
+  postId: number,
+  commentId: number,
+): PostActionType {
   return {
     type: DELETE_COMMENT,
-    postId,
+    payload: {
+      postId,
+      commentId,
+    },
   };
 }

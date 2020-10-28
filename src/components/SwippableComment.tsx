@@ -3,19 +3,20 @@ import { Dimensions, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { MOCK_WRITER } from '../constants/mock';
-import { SELECT_COMMENT_TO_EDIT } from '../stores/posts/types';
+import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from '../stores/posts/types';
 import { HighlightedText } from './Post';
 
 const deviceWidth = Dimensions.get('window').width;
 
 interface Props {
+  postId: number;
   id: number;
   writer: string;
   content: string;
 }
 
 const SwippableComment: React.FC<Props> = (props) => {
-  const { id, writer, content } = props;
+  const { postId, id, writer, content } = props;
   const dispatch = useDispatch();
   const editPressHandler = () => {
     dispatch({
@@ -28,6 +29,10 @@ const SwippableComment: React.FC<Props> = (props) => {
         },
       },
     });
+  };
+
+  const deletePressHandler = () => {
+    dispatch({ type: DELETE_COMMENT, payload: { postId, commentId: id } });
   };
 
   return (
@@ -45,7 +50,7 @@ const SwippableComment: React.FC<Props> = (props) => {
           <ControlSliderEdit onPress={editPressHandler}>
             <Text>Edit</Text>
           </ControlSliderEdit>
-          <ControlSliderDelete>
+          <ControlSliderDelete onPress={deletePressHandler}>
             <Text>Delete</Text>
           </ControlSliderDelete>
         </ControlSlider>
