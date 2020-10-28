@@ -5,7 +5,7 @@ import { KeyboardAvoidingView } from 'react-native';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import CommentInputPanel from '../components/CommentInputPanel';
-import PostComment from '../components/PostComment';
+import SwippableRow from '../components/SwippableComment';
 import { HomeStackParamList } from '../routes';
 import { RootState } from '../stores';
 import { PostState } from '../stores/posts/types';
@@ -32,14 +32,14 @@ const CommentScreen: React.FC<Props> = ({ route }) => {
     <KeyboardAvoidingView>
       <StyledScrollView>
         {commentList.map((comment, idx) => (
-          <PostComment
+          <SwippableRow
             key={idx}
             id={comment.id}
             writer={comment.writer}
             content={comment.content}
           />
         ))}
-        <CommentInputPanel postId={postId}/>
+        <CommentInputPanel postId={postId} />
       </StyledScrollView>
     </KeyboardAvoidingView>
   );

@@ -1,18 +1,28 @@
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+import { HighlightedText } from './Post';
 
 const deviceWidth = Dimensions.get('window').width;
 
-const SwippableRow: React.FC = () => {
+interface Props {
+  id: number;
+  writer: string;
+  content: string;
+}
+
+const SwippableComment: React.FC<Props> = (props) => {
+  const { writer, content } = props;
+
   return (
-    <ScrollView
+    <Container
       horizontal={true}
       pagingEnabled={true}
       showsHorizontalScrollIndicator={false}>
-      <MainSlider style={{ width: deviceWidth }}>
-        <Text>Swipe me!</Text>
+      <MainSlider>
+        <Text>
+          <HighlightedText>{writer}</HighlightedText> {content}
+        </Text>
       </MainSlider>
       <ControlSlider>
         <ControlSliderEdit>
@@ -22,20 +32,22 @@ const SwippableRow: React.FC = () => {
           <Text>Delete</Text>
         </ControlSliderDelete>
       </ControlSlider>
-    </ScrollView>
+    </Container>
   );
 };
 
+const Container = styled.ScrollView``;
+
 const MainSlider = styled.View`
   width: ${deviceWidth}px;
-  height: 36px;
+  height: 48px;
   justify-content: center;
-  background-color: #ababab;
+  /* background-color: #ababab; */
 `;
 
 const ControlSlider = styled.View`
   width: ${deviceWidth / 3}px;
-  height: 36px;
+  height: 48px;
   flex-direction: row;
 `;
 
@@ -44,7 +56,7 @@ const colors = {
   yellow: '#f9ca24',
 };
 
-const ControlSliderEdit = styled.View`
+const ControlSliderEdit = styled.TouchableOpacity`
   width: 50%;
   padding: 0 5px;
   background-color: ${colors.yellow};
@@ -52,7 +64,7 @@ const ControlSliderEdit = styled.View`
   align-items: center;
 `;
 
-const ControlSliderDelete = styled.View`
+const ControlSliderDelete = styled.TouchableOpacity`
   width: 50%;
   padding: 0 5px;
   background-color: ${colors.red};
@@ -60,4 +72,4 @@ const ControlSliderDelete = styled.View`
   align-items: center;
 `;
 
-export default SwippableRow;
+export default SwippableComment;
