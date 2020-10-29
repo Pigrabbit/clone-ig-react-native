@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { MOCK_WRITER } from '../constants/mock';
 import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from '../stores/posts/types';
+import { Maybe } from './Maybe';
 import { HighlightedText } from './Post';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -45,7 +46,7 @@ const SwippableComment: React.FC<Props> = (props) => {
           <HighlightedText>{writer}</HighlightedText> {content}
         </Text>
       </MainSlider>
-      {props.writer === MOCK_WRITER ? (
+      <Maybe isVisible={writer === MOCK_WRITER}>
         <ControlSlider>
           <ControlSliderEdit onPress={editPressHandler}>
             <Text>Edit</Text>
@@ -54,7 +55,7 @@ const SwippableComment: React.FC<Props> = (props) => {
             <Text>Delete</Text>
           </ControlSliderDelete>
         </ControlSlider>
-      ) : null}
+      </Maybe>
     </Container>
   );
 };
