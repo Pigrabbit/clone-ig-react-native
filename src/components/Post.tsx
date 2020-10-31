@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { LOAD_MORE_COMMENT_MESSAGE } from '../constants/message';
 import { PostType } from '../stores/posts/types';
 import TouchableIcon from './TouchableIcon';
 
-interface PostProps {
+const dimensions = Dimensions.get('window');
+const imageWidth = dimensions.width;
+const imageHeight = imageWidth;
+
+interface Props {
   post: PostType;
   onCommentPress: (postId: number) => void;
 }
 
-const Post: React.FC<PostProps> = (props) => {
+const Post: React.FC<Props> = (props) => {
   const { id, writer, body, imgURL } = props.post;
-  const dimensions = Dimensions.get('window');
-  const imageWidth = dimensions.width;
-  const imageHeight = imageWidth;
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+
+  const likePressHandler = (): void => {
+    console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼')
+    setIsLiked(!isLiked)
+  }
 
   return (
     <>
@@ -51,8 +58,9 @@ const Post: React.FC<PostProps> = (props) => {
           <TouchableIcon
             width={36}
             height={36}
-            iconName="likeIcon"
-            onPress={() => console.log('like button tapped')}
+            iconName={isLiked? 'likeFilledIcon' : 'likeEmptyIcon'}
+            tintColor={isLiked? '#ff7979' : null}
+            onPress={likePressHandler}
           />
           <TouchableIcon
             width={36}

@@ -8,14 +8,15 @@ interface Props {
   onPress: () => void;
   width?: number;
   height?: number;
+  tintColor?: string | null;
 }
 
 const TouchableIcon: React.FC<Props> = (props) => {
-  const { onPress, iconName, width, height } = props;
+  const { onPress, iconName, width, height, tintColor = ''} = props;
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <Icon width={width} height={height} source={assets[iconName]} />
+      <Icon width={width} height={height} style={{tintColor}} source={assets[iconName]} />
     </TouchableOpacity>
   );
 };
@@ -23,7 +24,8 @@ const TouchableIcon: React.FC<Props> = (props) => {
 const Icon = styled.Image`
   width: ${(props) => (props.width ? `${props.width}px` : '36px')};
   height: ${(props) => (props.height ? `${props.height}px` : '36px')};
-  margin: 0 5px;
+
+  margin: 0 5px
 `;
 
 export default TouchableIcon;
