@@ -14,11 +14,11 @@ interface Props {
   onCommentPress: (postId: number) => void;
 }
 
-const Post: React.FC<Props> = (props) => {
-  const { id, writer, body, imgURL } = props.post;
+const Post: React.FC<Props> = ({ post, onCommentPress }) => {
+  const { id, writer, body, imgURL } = post;
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
-  const likePressHandler = (): void => {
+  const likeButtonPressHandler = (): void => {
     console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼')
     setIsLiked(!isLiked)
   }
@@ -60,13 +60,13 @@ const Post: React.FC<Props> = (props) => {
             height={36}
             iconName={isLiked? 'likeFilledIcon' : 'likeEmptyIcon'}
             tintColor={isLiked? '#ff7979' : null}
-            onPress={likePressHandler}
+            onPress={likeButtonPressHandler}
           />
           <TouchableIcon
             width={36}
             height={36}
             iconName="commentIcon"
-            onPress={() => console.log('comment button tapped')}
+            onPress={() => onCommentPress(id)}
           />
         </PostControlPanelLeft>
         <PostControlPanelRight>
@@ -85,7 +85,7 @@ const Post: React.FC<Props> = (props) => {
       </PostBody>
       <PostCommentLoader
         onPress={() => {
-          props.onCommentPress(id);
+          onCommentPress(id);
         }}>
         {LOAD_MORE_COMMENT_MESSAGE}
       </PostCommentLoader>
