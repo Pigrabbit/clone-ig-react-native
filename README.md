@@ -1,3 +1,3 @@
 # Clone IG project
 
-Learning React Native by cloning IG
+Learn React Native by cloning IG project
