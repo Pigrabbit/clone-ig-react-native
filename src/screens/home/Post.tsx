@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
-import { LOAD_MORE_COMMENT_MESSAGE } from '../../constants/message';
-import { PostType } from '../../stores/posts/types';
 import TouchableIcon from '../../components/TouchableIcon';
+import { PostType } from '../../stores/posts/types';
 
 const dimensions = Dimensions.get('window');
 const imageWidth = dimensions.width;
@@ -15,13 +14,17 @@ interface Props {
 }
 
 const Post: React.FC<Props> = ({ post, onCommentPress }) => {
-  const { id, writer, body, imgURL } = post;
+  const { id, writer, body, imgURL, comments } = post;
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
   const likeButtonPressHandler = (): void => {
-    console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼')
-    setIsLiked(!isLiked)
-  }
+    console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼');
+    setIsLiked(!isLiked);
+  };
+
+  const createLoadCommentMessage = (numberOfComment: number): string => {
+    return `View ${numberOfComment} comment${numberOfComment === 1 ? '' : 's'}`;
+  };
 
   return (
     <>
@@ -58,8 +61,8 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
           <TouchableIcon
             width={36}
             height={36}
-            iconName={isLiked? 'likeFilledIcon' : 'likeEmptyIcon'}
-            tintColor={isLiked? '#ff7979' : null}
+            iconName={isLiked ? 'likeFilledIcon' : 'likeEmptyIcon'}
+            tintColor={isLiked ? '#ff7979' : null}
             onPress={likeButtonPressHandler}
           />
           <TouchableIcon
@@ -87,7 +90,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
         onPress={() => {
           onCommentPress(id);
         }}>
-        {LOAD_MORE_COMMENT_MESSAGE}
+        {createLoadCommentMessage(comments.length)}
       </PostCommentLoader>
     </>
   );

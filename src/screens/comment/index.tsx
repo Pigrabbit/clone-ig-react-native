@@ -8,7 +8,7 @@ import { HomeStackParamList } from '../../routes';
 import { RootState } from '../../stores';
 import { PostState } from '../../stores/posts/types';
 import CommentInputPanel from './CommentInputPanel';
-import SwippableComment from './SwippableComment';
+import SwippableComment from './SwipeableComment';
 
 type CommentScreenRouteProp = RouteProp<HomeStackParamList, 'Comment'>;
 type CommentScreenNavigationProp = StackNavigationProp<
