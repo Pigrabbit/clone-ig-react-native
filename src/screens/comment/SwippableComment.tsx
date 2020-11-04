@@ -2,10 +2,11 @@ import React from 'react';
 import { Dimensions, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
-import { MOCK_WRITER } from '../constants/mock';
-import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from '../stores/posts/types';
-import { Maybe } from './Maybe';
-import { HighlightedText } from './Post';
+import { MOCK_WRITER } from '../../constants/mock';
+import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from '../../stores/posts/types';
+import { Maybe } from '../../components/Maybe';
+import { HighlightedText } from '../home/Post';
+import Swipeable from '../../components/Swipeable';
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -16,7 +17,7 @@ interface Props {
   content: string;
 }
 
-const SwippableComment: React.FC<Props> = (props) => {
+const SwipeableComment: React.FC<Props> = (props) => {
   const { postId, id, writer, content } = props;
   const dispatch = useDispatch();
   const editPressHandler = () => {
@@ -37,10 +38,7 @@ const SwippableComment: React.FC<Props> = (props) => {
   };
 
   return (
-    <Container
-      horizontal={true}
-      pagingEnabled={true}
-      showsHorizontalScrollIndicator={false}>
+    <Swipeable>
       <MainSlider>
         <Text>
           <HighlightedText>{writer}</HighlightedText> {content}
@@ -55,12 +53,10 @@ const SwippableComment: React.FC<Props> = (props) => {
             <Text>Delete</Text>
           </ControlSliderDelete>
         </ControlSlider>
-      </Maybe>
-    </Container>
+      </Maybe> 
+    </Swipeable>
   );
 };
-
-const Container = styled.ScrollView``;
 
 const MainSlider = styled.View`
   width: ${deviceWidth}px;
@@ -96,4 +92,4 @@ const ControlSliderDelete = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export default SwippableComment;
+export default SwipeableComment;

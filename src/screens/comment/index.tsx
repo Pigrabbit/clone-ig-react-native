@@ -4,11 +4,11 @@ import React from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import CommentInputPanel from '../components/CommentInputPanel';
-import SwippableComment from '../components/SwippableComment';
-import { HomeStackParamList } from '../routes';
-import { RootState } from '../stores';
-import { PostState } from '../stores/posts/types';
+import { HomeStackParamList } from '../../routes';
+import { RootState } from '../../stores';
+import { PostState } from '../../stores/posts/types';
+import CommentInputPanel from './CommentInputPanel';
+import SwippableComment from './SwippableComment';
 
 type CommentScreenRouteProp = RouteProp<HomeStackParamList, 'Comment'>;
 type CommentScreenNavigationProp = StackNavigationProp<

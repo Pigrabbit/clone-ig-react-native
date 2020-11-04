@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import CommentScreen from '../screens/CommentScreen';
-import HomeScreen from '../screens/HomeScreen';
+import CommentScreen from '../screens/comment';
+import HomeScreen from '../screens/home';
 
 export type HomeStackParamList = {
   Home: undefined;

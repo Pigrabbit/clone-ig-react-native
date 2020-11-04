@@ -3,15 +3,15 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import { MOCK_WRITER } from '../constants/mock';
-import { RootState } from '../stores';
+import { MOCK_WRITER } from '../../constants/mock';
+import { RootState } from '../../stores';
 import {
   EDIT_COMMENT,
   PostState,
   SELECT_COMMENT_TO_EDIT,
   WRITE_COMMENT,
-} from '../stores/posts/types';
-import TouchableIcon from './TouchableIcon';
+} from '../../stores/posts/types';
+import TouchableIcon from '../../components/TouchableIcon';
 
 interface Props {
   postId: number;

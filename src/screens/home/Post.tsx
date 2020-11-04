@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
 import styled from 'styled-components/native';
-import { LOAD_MORE_COMMENT_MESSAGE } from '../constants/message';
-import { PostType } from '../stores/posts/types';
-import TouchableIcon from './TouchableIcon';
+import { LOAD_MORE_COMMENT_MESSAGE } from '../../constants/message';
+import { PostType } from '../../stores/posts/types';
+import TouchableIcon from '../../components/TouchableIcon';
 
 const dimensions = Dimensions.get('window');
 const imageWidth = dimensions.width;

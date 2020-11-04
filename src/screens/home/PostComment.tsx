@@ -2,8 +2,8 @@ import React from 'react';
 import { Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
-import { MOCK_WRITER } from '../constants/mock';
-import { CommentType, SELECT_COMMENT_TO_EDIT } from '../stores/posts/types';
+import { MOCK_WRITER } from '../../constants/mock';
+import { CommentType, SELECT_COMMENT_TO_EDIT } from '../../stores/posts/types';
 import { HighlightedText } from './Post';
 
 const PostComment: React.FC<CommentType> = (props) => {
