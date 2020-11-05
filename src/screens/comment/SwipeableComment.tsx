@@ -3,7 +3,10 @@ import { Dimensions, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { MOCK_WRITER } from '../../constants/mock';
-import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from '../../stores/posts/types';
+import {
+  DELETE_COMMENT,
+  SELECT_COMMENT_TO_EDIT,
+} from '../../stores/posts/types';
 import { Maybe } from '../../components/Maybe';
 import { HighlightedText } from '../home/Post';
 import Swipeable from '../../components/Swipeable';
@@ -17,8 +20,7 @@ interface Props {
   content: string;
 }
 
-const SwipeableComment: React.FC<Props> = (props) => {
-  const { postId, id, writer, content } = props;
+const SwipeableComment: React.FC<Props> = ({ postId, id, writer, content }) => {
   const dispatch = useDispatch();
   const editPressHandler = () => {
     dispatch({
@@ -53,7 +55,7 @@ const SwipeableComment: React.FC<Props> = (props) => {
             <Text>Delete</Text>
           </ControlSliderDelete>
         </ControlSlider>
-      </Maybe> 
+      </Maybe>
     </Swipeable>
   );
 };
