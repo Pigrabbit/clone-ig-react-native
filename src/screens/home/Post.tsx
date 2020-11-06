@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { ReactSVG, useRef, useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
+import { State, TapGestureHandler, TapGestureHandlerStateChangeEvent } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import TouchableIcon from '../../components/TouchableIcon';
 import { PostType } from '../../stores/posts/types';
@@ -16,11 +17,16 @@ interface Props {
 const Post: React.FC<Props> = ({ post, onCommentPress }) => {
   const { id, writer, body, imgURL, comments } = post;
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const doubleTapRef = useRef<TapGestureHandler | null>(null);
 
   const likeButtonPressHandler = (): void => {
     console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼');
     setIsLiked(!isLiked);
   };
+
+  const imageDoubleTapHandler = (e: TapGestureHandlerStateChangeEvent): void => {
+    if (e.nativeEvent.state === State.ACTIVE) setIsLiked(!isLiked);
+  }
 
   const createLoadCommentMessage = (numberOfComment: number): string => {
     return `View ${numberOfComment} comment${numberOfComment === 1 ? '' : 's'}`;
@@ -49,13 +55,18 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
           onPress={() => console.log('more button tapped')}
         />
       </PostHeader>
-      <Image
-        source={{
-          width: imageWidth,
-          height: imageHeight,
-          uri: imgURL,
-        }}
-      />
+      <TapGestureHandler
+        ref={doubleTapRef}
+        onHandlerStateChange={imageDoubleTapHandler}
+        numberOfTaps={2}>
+        <Image
+          source={{
+            width: imageWidth,
+            height: imageHeight,
+            uri: imgURL,
+          }}
+        />
+      </TapGestureHandler>
       <PostControlPanel>
         <PostControlPanelLeft>
           <TouchableIcon
