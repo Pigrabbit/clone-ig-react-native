@@ -1,15 +1,12 @@
+import { Maybe } from 'components/Maybe';
+import { Swipeable } from 'components/Swipeable';
+import { MOCK_WRITER } from 'constants/mock';
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { HighlightedText } from 'screens/home/Post';
+import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from 'stores/posts/types';
 import styled from 'styled-components/native';
-import { MOCK_WRITER } from '../../constants/mock';
-import {
-  DELETE_COMMENT,
-  SELECT_COMMENT_TO_EDIT,
-} from '../../stores/posts/types';
-import { Maybe } from '../../components/Maybe';
-import { HighlightedText } from '../home/Post';
-import Swipeable from '../../components/Swipeable';
 
 const deviceWidth = Dimensions.get('window').width;
 

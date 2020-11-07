@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const Swipeable: React.FC = (props) => {
+export const Swipeable: React.FC = (props) => {
   return (
     <ScrollView
       horizontal={true}
@@ -11,5 +11,3 @@ const Swipeable: React.FC = (props) => {
     </ScrollView>
   );
 };
-
-export default Swipeable;

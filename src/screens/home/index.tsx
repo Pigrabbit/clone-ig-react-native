@@ -2,11 +2,11 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { HomeStackParamList } from 'routes';
+import Post from 'screens/home/Post';
+import { RootState } from 'stores';
+import { PostState } from 'stores/posts/types';
 import styled from 'styled-components/native';
-import Post from './Post';
-import { HomeStackParamList } from '../../routes';
-import { RootState } from '../../stores';
-import { PostState } from '../../stores/posts/types';
 
 type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
 type HomeScreenNavigationProp = StackNavigationProp<HomeStackParamList, 'Home'>;
