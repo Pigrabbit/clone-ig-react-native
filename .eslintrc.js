@@ -28,6 +28,14 @@ module.exports = {
     "settings": {
       "react": {
         "version": "detect"
+      },
+      "import/resolver": {
+        "babel-module": {}
       }
-    }
+    },
+    "overrides": [
+      { 
+        "excludedFiles": "*.config.js"
+      }
+    ]
 };

@@ -1,9 +1,9 @@
-import React, { ReactSVG, useRef, useState } from 'react';
+import TouchableIcon from 'components/TouchableIcon';
+import React, { useRef, useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
 import { State, TapGestureHandler, TapGestureHandlerStateChangeEvent } from 'react-native-gesture-handler';
+import { PostType } from 'stores/posts/types';
 import styled from 'styled-components/native';
-import TouchableIcon from '../../components/TouchableIcon';
-import { PostType } from '../../stores/posts/types';
 
 const dimensions = Dimensions.get('window');
 const imageWidth = dimensions.width;
