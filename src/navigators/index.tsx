@@ -3,18 +3,28 @@ import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
 import React from 'react';
 import { Image } from 'react-native';
+import { useSelector } from 'react-redux';
 import ActivitiesScreen from 'screens/activities';
 import MyPageScreen from 'screens/myPage';
 import PostWriterScreen from 'screens/postWriter';
+import { RootState } from 'stores';
+import { AppTheme } from 'stores/theme/types';
 import HomeScreenStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
 const RootTab: React.FC = () => {
+  const theme = useSelector<RootState, AppTheme>(
+    (rootState) => rootState.theme,
+  );
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: COLOR.PINK, showLabel: false }}>
+      tabBarOptions={{
+        activeTintColor: COLOR.PINK,
+        showLabel: false,
+        style: { backgroundColor: COLOR[theme].backgroundColor },
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeScreenStack}

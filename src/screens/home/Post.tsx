@@ -2,8 +2,15 @@ import TouchableIcon from 'components/TouchableIcon';
 import { COLOR } from 'constants/styles';
 import React, { useRef, useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
-import { State, TapGestureHandler, TapGestureHandlerStateChangeEvent } from 'react-native-gesture-handler';
+import {
+  State,
+  TapGestureHandler,
+  TapGestureHandlerStateChangeEvent,
+} from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
+import { RootState } from 'stores';
 import { PostType } from 'stores/posts/types';
+import { AppTheme } from 'stores/theme/types';
 import styled from 'styled-components/native';
 
 const dimensions = Dimensions.get('window');
@@ -19,22 +26,27 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
   const { id, writer, body, imgURL, comments } = post;
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const doubleTapRef = useRef<TapGestureHandler | null>(null);
+  const theme = useSelector<RootState, AppTheme>(
+    (rootState) => rootState.theme,
+  );
 
   const likeButtonPressHandler = (): void => {
     console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼');
     setIsLiked(!isLiked);
   };
 
-  const imageDoubleTapHandler = (e: TapGestureHandlerStateChangeEvent): void => {
+  const imageDoubleTapHandler = (
+    e: TapGestureHandlerStateChangeEvent,
+  ): void => {
     if (e.nativeEvent.state === State.ACTIVE) setIsLiked(true);
-  }
+  };
 
   const createLoadCommentMessage = (numberOfComment: number): string => {
     return `View ${numberOfComment} comment${numberOfComment === 1 ? '' : 's'}`;
   };
 
   return (
-    <>
+    <Container>
       <PostHeader>
         <PostHeaderProfile>
           <Image
@@ -45,7 +57,8 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
                 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
             }}
           />
-          <HighlightedText style={{ fontSize: 16, marginLeft: 8 }}>
+          <HighlightedText
+            style={{ fontSize: 16, marginLeft: 8, color: COLOR[theme].text }}>
             {writer}
           </HighlightedText>
         </PostHeaderProfile>
@@ -53,6 +66,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
           width={36}
           height={36}
           iconName="moreIcon"
+          tintColor={COLOR[theme].text}
           onPress={() => console.log('more button tapped')}
         />
       </PostHeader>
@@ -74,13 +88,14 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
             width={36}
             height={36}
             iconName={isLiked ? 'likeFilledIcon' : 'likeEmptyIcon'}
-            tintColor={isLiked ? COLOR.PINK : null}
+            tintColor={isLiked ? COLOR.PINK : ''}
             onPress={likeButtonPressHandler}
           />
           <TouchableIcon
             width={36}
             height={36}
             iconName="commentIcon"
+            tintColor={COLOR[theme].text}
             onPress={() => onCommentPress(id)}
           />
         </PostControlPanelLeft>
@@ -89,12 +104,13 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
             width={36}
             height={36}
             iconName="archiveIcon"
+            tintColor={COLOR[theme].text}
             onPress={() => console.log('archive button tapped')}
           />
         </PostControlPanelRight>
       </PostControlPanel>
       <PostBody>
-        <Text>
+        <Text style={{ color: COLOR[theme].text }}>
           <HighlightedText>{writer}</HighlightedText> {body}
         </Text>
       </PostBody>
@@ -104,9 +120,13 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
         }}>
         {createLoadCommentMessage(comments.length)}
       </PostCommentLoader>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.View`
+  padding: 5px 0;
+`;
 
 const PostHeader = styled.View`
   flex-direction: row;

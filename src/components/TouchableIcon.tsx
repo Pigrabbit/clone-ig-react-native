@@ -8,7 +8,7 @@ interface Props {
   onPress: () => void;
   width?: number;
   height?: number;
-  tintColor?: string | null;
+  tintColor?: string;
 }
 
 const TouchableIcon: React.FC<Props> = ({

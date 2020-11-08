@@ -27,6 +27,7 @@ const CommentScreen: React.FC<Props> = ({ route }) => {
   const { postList } = useSelector<RootState, PostState>(
     (rootState) => rootState.post,
   );
+  
   const commentList = postList.filter((post) => post.id === postId)[0].comments;
 
   return (

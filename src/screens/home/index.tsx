@@ -1,11 +1,13 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { COLOR } from 'constants/styles';
 import { HomeStackParamList } from 'navigators/HomeStack';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Post from 'screens/home/Post';
 import { RootState } from 'stores';
 import { PostState } from 'stores/posts/types';
+import { AppTheme } from 'stores/theme/types';
 import styled from 'styled-components/native';
 
 type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
@@ -20,12 +22,14 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const { postList } = useSelector<RootState, PostState>(
     (rootState) => rootState.post,
   );
+  const theme = useSelector<RootState, AppTheme>((rootState) => rootState.theme)
+
   const onCommentPress = (postId: number) => {
     navigation.navigate('Comment', { postId });
   };
 
   return (
-    <StyledScrollView>
+    <StyledScrollView theme={theme}>
       {postList.map((post, idx) => (
         <Post key={idx} post={post} onCommentPress={onCommentPress} />
       ))}
@@ -34,7 +38,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 };
 
 const StyledScrollView = styled.ScrollView`
-  margin: 10px 0 20px 0;
+  background-color: ${(props) => COLOR[props.theme].backgroundColor};
 `;
 
 export default HomeScreen;

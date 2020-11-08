@@ -1,11 +1,14 @@
 import { Maybe } from 'components/Maybe';
 import { Swipeable } from 'components/Swipeable';
 import { MOCK_WRITER } from 'constants/mock';
+import { COLOR } from 'constants/styles';
 import React from 'react';
 import { Dimensions, Text } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { HighlightedText } from 'screens/home/Post';
+import { RootState } from 'stores';
 import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from 'stores/posts/types';
+import { AppTheme } from 'stores/theme/types';
 import styled from 'styled-components/native';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -18,6 +21,9 @@ interface Props {
 }
 
 const SwipeableComment: React.FC<Props> = ({ postId, id, writer, content }) => {
+  const theme = useSelector<RootState, AppTheme>(
+    (rootState) => rootState.theme,
+  );
   const dispatch = useDispatch();
   const editPressHandler = () => {
     dispatch({
@@ -39,17 +45,17 @@ const SwipeableComment: React.FC<Props> = ({ postId, id, writer, content }) => {
   return (
     <Swipeable>
       <MainSlider>
-        <Text>
+        <Text style={{ color: COLOR[theme].text }}>
           <HighlightedText>{writer}</HighlightedText> {content}
         </Text>
       </MainSlider>
       <Maybe isVisible={writer === MOCK_WRITER}>
         <ControlSlider>
           <ControlSliderEdit onPress={editPressHandler}>
-            <Text>Edit</Text>
+            <Text style={{ color: COLOR[theme].text }}>Edit</Text>
           </ControlSliderEdit>
           <ControlSliderDelete onPress={deletePressHandler}>
-            <Text>Delete</Text>
+            <Text style={{ color: COLOR[theme].text }}>Delete</Text>
           </ControlSliderDelete>
         </ControlSlider>
       </Maybe>
