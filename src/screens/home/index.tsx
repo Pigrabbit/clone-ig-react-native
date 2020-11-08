@@ -1,8 +1,8 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { HomeStackParamList } from 'navigators/HomeStack';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { HomeStackParamList } from 'routes';
 import Post from 'screens/home/Post';
 import { RootState } from 'stores';
 import { PostState } from 'stores/posts/types';

@@ -1,9 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { HomeStackParamList } from 'navigators/HomeStack';
 import React from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { useSelector } from 'react-redux';
-import { HomeStackParamList } from 'routes';
+
 import CommentInputPanel from 'screens/comment/CommentInputPanel';
 import SwippableComment from 'screens/comment/SwipeableComment';
 import { RootState } from 'stores';
