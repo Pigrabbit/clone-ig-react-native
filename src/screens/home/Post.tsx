@@ -1,4 +1,5 @@
 import TouchableIcon from 'components/TouchableIcon';
+import { COLOR } from 'constants/styles';
 import React, { useRef, useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
 import { State, TapGestureHandler, TapGestureHandlerStateChangeEvent } from 'react-native-gesture-handler';
@@ -25,7 +26,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
   };
 
   const imageDoubleTapHandler = (e: TapGestureHandlerStateChangeEvent): void => {
-    if (e.nativeEvent.state === State.ACTIVE) setIsLiked(!isLiked);
+    if (e.nativeEvent.state === State.ACTIVE) setIsLiked(true);
   }
 
   const createLoadCommentMessage = (numberOfComment: number): string => {
@@ -73,7 +74,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
             width={36}
             height={36}
             iconName={isLiked ? 'likeFilledIcon' : 'likeEmptyIcon'}
-            tintColor={isLiked ? '#ff7979' : null}
+            tintColor={isLiked ? COLOR.PINK : null}
             onPress={likeButtonPressHandler}
           />
           <TouchableIcon

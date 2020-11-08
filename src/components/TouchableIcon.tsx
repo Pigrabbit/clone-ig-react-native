@@ -1,7 +1,7 @@
+import { ASSETS, IconType } from 'constants/assets';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
-import { assets, IconType } from 'constants/assets';
 
 interface Props {
   iconName: IconType;
@@ -24,7 +24,7 @@ const TouchableIcon: React.FC<Props> = ({
         width={width}
         height={height}
         style={{ tintColor }}
-        source={assets[iconName]}
+        source={ASSETS[iconName]}
       />
     </TouchableOpacity>
   );
