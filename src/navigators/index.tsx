@@ -24,7 +24,8 @@ const RootTab: React.FC = () => {
         activeTintColor: COLOR.PINK,
         showLabel: false,
         style: { backgroundColor: COLOR[theme].backgroundColor },
-      }}>
+      }}
+      sceneContainerStyle={{ backgroundColor: COLOR[theme].backgroundColor }}>
       <Tab.Screen
         name="Home"
         component={HomeScreenStack}

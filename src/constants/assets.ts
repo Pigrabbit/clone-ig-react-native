@@ -18,4 +18,5 @@ export const ASSETS = {
   homeIcon: require('../../assets/icons/baseline_home_black_48dp.png'),
   postIcon: require('../../assets/icons/baseline_library_add_black_48dp.png'),
   personIcon: require('../../assets/icons/baseline_person_black_48dp.png'),
+  accountIcon: require('../../assets/icons/outline_account_circle_black_48dp.png')
 };

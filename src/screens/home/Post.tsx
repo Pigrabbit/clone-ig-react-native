@@ -1,4 +1,5 @@
 import TouchableIcon from 'components/TouchableIcon';
+import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
 import React, { useRef, useState } from 'react';
 import { Dimensions, Image, Text } from 'react-native';
@@ -50,12 +51,8 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
       <PostHeader>
         <PostHeaderProfile>
           <Image
-            source={{
-              width: 48,
-              height: 48,
-              uri:
-                'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
-            }}
+            source={ASSETS.accountIcon}
+            style={{ width: 36, height: 36, tintColor: COLOR[theme].text}}
           />
           <HighlightedText
             style={{ fontSize: 16, marginLeft: 8, color: COLOR[theme].text }}>
@@ -88,7 +85,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
             width={36}
             height={36}
             iconName={isLiked ? 'likeFilledIcon' : 'likeEmptyIcon'}
-            tintColor={isLiked ? COLOR.PINK : ''}
+            tintColor={isLiked ? COLOR.PINK : COLOR[theme].text}
             onPress={likeButtonPressHandler}
           />
           <TouchableIcon

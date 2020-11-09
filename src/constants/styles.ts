@@ -1,5 +1,7 @@
 export const COLOR = {
   PINK: '#ff7979',
+  YELLOW_GREEN: '#badc58',
+  GREY: '#535c68',
   LIGHT_MODE: {
     backgroundColor: '#ffffff',
     text: '#000000',
