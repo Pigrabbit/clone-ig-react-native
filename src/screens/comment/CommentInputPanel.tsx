@@ -14,6 +14,7 @@ import {
 import TouchableIcon from 'components/TouchableIcon';
 import { AppTheme } from 'stores/theme/types';
 import { COLOR } from 'constants/styles';
+import { editComment, selectCommentToEdit, writeComment } from 'stores/posts/actions';
 
 interface Props {
   postId: number;
@@ -39,31 +40,11 @@ const CommentInputPanel: React.FC<Props> = (props) => {
 
   const submitPressHandler = () => {
     if (!isEdittingMode && !isInputEmpty) {
-      dispatch({
-        type: WRITE_COMMENT,
-        payload: {
-          postId,
-          comment: { writer: MOCK_WRITER, content: text },
-        },
-      });
+      dispatch(writeComment(postId, {writer: MOCK_WRITER, content: text}))
       setText('');
     } else if (isEdittingMode) {
-      dispatch({
-        type: EDIT_COMMENT,
-        payload: {
-          postId,
-          comment: {
-            ...editInProgessComment,
-            content: text,
-          },
-        },
-      });
-      dispatch({
-        type: SELECT_COMMENT_TO_EDIT,
-        payload: {
-          editInProgressComment: null,
-        },
-      });
+      dispatch(editComment(postId, { ...editInProgessComment, content: text}))
+      dispatch(selectCommentToEdit(null))
       setText('');
     }
   };
@@ -100,6 +81,7 @@ const CommentInput = styled.TextInput`
   border-color: #000000;
   border-bottom-width: 1px;
   border-color: ${props => COLOR[props.theme].text};
+  color: ${props => COLOR[props.theme].text}
 `;
 
 export default CommentInputPanel;

@@ -7,6 +7,7 @@ import { Dimensions, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { HighlightedText } from 'screens/home/Post';
 import { RootState } from 'stores';
+import { deleteComment, selectCommentToEdit } from 'stores/posts/actions';
 import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from 'stores/posts/types';
 import { AppTheme } from 'stores/theme/types';
 import styled from 'styled-components/native';
@@ -26,20 +27,11 @@ const SwipeableComment: React.FC<Props> = ({ postId, id, writer, content }) => {
   );
   const dispatch = useDispatch();
   const editPressHandler = () => {
-    dispatch({
-      type: SELECT_COMMENT_TO_EDIT,
-      payload: {
-        editInProgressComment: {
-          id,
-          writer,
-          content,
-        },
-      },
-    });
+    dispatch(selectCommentToEdit({id, writer, content}))
   };
 
   const deletePressHandler = () => {
-    dispatch({ type: DELETE_COMMENT, payload: { postId, commentId: id } });
+    dispatch(deleteComment(postId, id))
   };
 
   return (

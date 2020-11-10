@@ -26,7 +26,7 @@ interface writeCommentAction {
   type: typeof WRITE_COMMENT;
   payload: {
     postId: number;
-    comment: CommentType;
+    comment: Pick<CommentType, 'writer' | 'content'>;
   };
 }
 

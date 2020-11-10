@@ -9,7 +9,7 @@ import {
 
 export function writeComment(
   postId: number,
-  comment: CommentType,
+  comment: Pick<CommentType, 'writer' | 'content'>,
 ): PostActionType {
   return {
     type: WRITE_COMMENT,
