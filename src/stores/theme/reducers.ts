@@ -1,15 +1,19 @@
-import { AppTheme, DARK_MODE, LIGHT_MODE, ToggleAppModeAction, TOGGLE_THEME_ACTION } from './types';
+import {
+  AppTheme,
+  FETCH_THEME_ACTION,
+  ThemeAction,
+  TOGGLE_THEME_ACTION,
+} from './types';
 
-const initialAppTheme: AppTheme = 'DARK_MODE';
+const initialAppTheme: AppTheme = 'LIGHT_MODE';
 
-export function themeReducer(
-  state = initialAppTheme,
-  action: ToggleAppModeAction,
-) {
-  switch(action.type) {
+export function themeReducer(state = initialAppTheme, action: ThemeAction) {
+  switch (action.type) {
+    case FETCH_THEME_ACTION:
+      return action.savedTheme;
     case TOGGLE_THEME_ACTION:
-      return action.toggleTo
+      return action.toggleTo;
     default:
-      return state
+      return state;
   }
 }

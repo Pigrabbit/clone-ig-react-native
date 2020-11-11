@@ -8,13 +8,12 @@
  * @format
  */
 
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreenStack from './src/navigators';
-import { rootReducer } from './src/stores';
+import React from 'react';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux'
 import RootTab from './src/navigators';
+import { rootReducer } from './src/stores';
 
 declare const global: { HermesInternal: null | {} };
 

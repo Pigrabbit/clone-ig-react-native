@@ -1,8 +1,21 @@
-import { AppTheme, ToggleAppModeAction, TOGGLE_THEME_ACTION } from "./types";
+import {
+  AppTheme,
+  FetchThemeAction,
+  FETCH_THEME_ACTION,
+  ToggleThemeAction,
+  TOGGLE_THEME_ACTION,
+} from './types';
 
-export function toggleTheme(toggleTo: AppTheme): ToggleAppModeAction {
+export function toggleTheme(toggleTo: AppTheme): ToggleThemeAction {
   return {
     type: TOGGLE_THEME_ACTION,
-    toggleTo
-  }
+    toggleTo,
+  };
+}
+
+export function fetchTheme(savedTheme: AppTheme): FetchThemeAction {
+  return {
+    type: FETCH_THEME_ACTION,
+    savedTheme,
+  };
 }

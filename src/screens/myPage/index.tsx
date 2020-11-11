@@ -1,7 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from 'constants/styles';
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'stores';
@@ -13,13 +12,14 @@ const MyPageScreen: React.FC = () => {
   const theme = useSelector<RootState, AppTheme>(
     (rootState) => rootState.theme,
   );
-  const dispatch = useDispatch()
-  const [isDarkMode, setIsDarkmode] = useState<boolean>(theme === DARK_MODE)
+  const dispatch = useDispatch();
+  const [isDarkMode, setIsDarkmode] = useState<boolean>(theme === DARK_MODE);
 
-  const handleSwitchToggle = () => {
-    dispatch(toggleTheme(isDarkMode ? LIGHT_MODE : DARK_MODE))
-    setIsDarkmode(!isDarkMode)
-  }
+  const handleSwitchToggle = async () => {
+    dispatch(toggleTheme(isDarkMode ? LIGHT_MODE : DARK_MODE));
+    await AsyncStorage.setItem('theme', isDarkMode ? LIGHT_MODE : DARK_MODE);
+    setIsDarkmode(!isDarkMode);
+  };
 
   return (
     <Container>
@@ -28,7 +28,7 @@ const MyPageScreen: React.FC = () => {
       </Header>
       <Body>
         <OptionRow>
-          <Text style={{ color: COLOR[theme].text }}>Dark mode</Text>
+          <OptionRowLabel theme={theme}>Dark mode</OptionRowLabel>
           <Switch
             trackColor={{ true: COLOR.YELLOW_GREEN, false: COLOR.GREY }}
             onValueChange={handleSwitchToggle}
@@ -62,8 +62,15 @@ const Body = styled.ScrollView`
 `;
 
 const OptionRow = styled.View`
+  padding: 10px;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+`;
+
+const OptionRowLabel = styled.Text`
+  font-size: 18px;
+  color: ${(props) => COLOR[props.theme].text};
 `;
 
 export default MyPageScreen;

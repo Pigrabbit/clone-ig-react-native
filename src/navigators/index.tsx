@@ -1,19 +1,32 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ActivitiesScreen from 'screens/activities';
 import MyPageScreen from 'screens/myPage';
 import PostWriterScreen from 'screens/postWriter';
 import { RootState } from 'stores';
-import { AppTheme } from 'stores/theme/types';
+import { fetchTheme } from 'stores/theme/actions';
+import { AppTheme, isAppThemeType } from 'stores/theme/types';
 import HomeScreenStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
 const RootTab: React.FC = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const fetchSavedTheme = async () => {
+      const savedTheme = await AsyncStorage.getItem('theme');
+      if (isAppThemeType(savedTheme)) {
+        dispatch(fetchTheme(savedTheme))
+      }
+    }
+
+    fetchSavedTheme()
+  }, [])
   const theme = useSelector<RootState, AppTheme>(
     (rootState) => rootState.theme,
   );
