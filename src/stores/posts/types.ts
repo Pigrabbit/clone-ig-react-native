@@ -4,6 +4,14 @@ export type CommentType = {
   content: string;
 };
 
+export function isCommentType(arg: any): arg is CommentType {
+  return (
+    arg.id !== undefined &&
+    arg.writer !== undefined &&
+    arg.content !== undefined
+  );
+}
+
 export type PostType = {
   id: number;
   writer: string;

@@ -7,6 +7,7 @@ import { MOCK_WRITER } from 'constants/mock';
 import { RootState } from 'stores';
 import {
   EDIT_COMMENT,
+  isCommentType,
   PostState,
   SELECT_COMMENT_TO_EDIT,
   WRITE_COMMENT,
@@ -43,6 +44,7 @@ const CommentInputPanel: React.FC<Props> = (props) => {
       dispatch(writeComment(postId, {writer: MOCK_WRITER, content: text}))
       setText('');
     } else if (isEdittingMode) {
+      if (!isCommentType(editInProgessComment)) return
       dispatch(editComment(postId, { ...editInProgessComment, content: text}))
       dispatch(selectCommentToEdit(null))
       setText('');
@@ -54,6 +56,7 @@ const CommentInputPanel: React.FC<Props> = (props) => {
       <CommentInput
         value={text}
         theme={theme}
+        autoFocus={true}
         onChangeText={(text) => setText(text)}
         placeholder="Write comment here..."
         placeholderTextColor={COLOR[theme].gray}
