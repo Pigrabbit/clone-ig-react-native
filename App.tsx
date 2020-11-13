@@ -9,6 +9,7 @@
  */
 
 import { NavigationContainer } from '@react-navigation/native';
+import Toast from 'components/Toast';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <Toast verticalPos={'TOP'} message={'Hello'} type={'CONFIRM'}/>
         <RootTab />
       </NavigationContainer>
     </Provider>
