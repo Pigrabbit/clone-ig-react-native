@@ -1,6 +1,6 @@
 import { WIDNOW_HEIGHT } from 'constants/metrics';
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 
 type VerticalPosType = 'TOP' | 'MIDDLE' | 'BOTTOM';
@@ -10,9 +10,34 @@ interface Props {
   verticalPos: VerticalPosType;
   message: string;
   type: ToastType;
+  duration: number;
 }
 
-const Toast: React.FC<Props> = ({ verticalPos, message, type }) => {
+// TODO: connect Toast component to global redux store
+// let Toast appear when TOAST/XXX action has dispatched
+const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
+  const fadeAnimation = useRef(new Animated.Value(0)).current;
+
+  const showToast = (duration: number) => {
+    Animated.timing(fadeAnimation, {
+      toValue: 1,
+      duration,
+      useNativeDriver: false,
+    }).start(() => fadeOut(2 * duration));
+  };
+
+  const fadeOut = (duration: number): void => {
+    Animated.timing(fadeAnimation, {
+      toValue: 0,
+      duration,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    showToast(duration);
+  }, []);
+
   const getHeight = (posProp: VerticalPosType): number => {
     switch (posProp) {
       case 'TOP':
@@ -23,6 +48,7 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type }) => {
         return WIDNOW_HEIGHT * 0.8;
     }
   };
+
   const getBackgroundColor = (toastTypeProps: ToastType): string => {
     switch (toastTypeProps) {
       case 'CONFIRM':
@@ -34,17 +60,19 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type }) => {
     }
   };
   return (
-    <Container
+    <AnimatedContainer
       height={getHeight(verticalPos)}
-      backgroundColor={getBackgroundColor(type)}>
+      backgroundColor={getBackgroundColor(type)}
+      opacity={fadeAnimation}>
       <Content>{message}</Content>
-    </Container>
+    </AnimatedContainer>
   );
 };
 
 interface IStyledContainer {
   height: number;
   backgroundColor: string;
+  opacity: number;
 }
 
 const Container = styled.View<IStyledContainer>`
@@ -59,10 +87,13 @@ const Container = styled.View<IStyledContainer>`
   z-index: 9999;
   align-items: center;
   justify-content: center;
+  opacity: ${(props) => props.opacity};
 `;
+
+const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
 const Content = styled.Text`
   font-size: 18px;
-`
+`;
 
 export default Toast;
