@@ -1,15 +1,13 @@
 import { WIDNOW_HEIGHT } from 'constants/metrics';
 import React, { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
+import { ToastMessageType, VerticalPosType } from 'stores/toast/types';
 import styled from 'styled-components/native';
-
-type VerticalPosType = 'TOP' | 'MIDDLE' | 'BOTTOM';
-type ToastType = 'CONFIRM' | 'WARNING' | 'ERROR';
 
 interface Props {
   verticalPos: VerticalPosType;
   message: string;
-  type: ToastType;
+  type: ToastMessageType;
   duration: number;
 }
 
@@ -49,7 +47,7 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
     }
   };
 
-  const getBackgroundColor = (toastTypeProps: ToastType): string => {
+  const getBackgroundColor = (toastTypeProps: ToastMessageType): string => {
     switch (toastTypeProps) {
       case 'CONFIRM':
         return '#badc58';
@@ -59,6 +57,7 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
         return '#eb4d4b';
     }
   };
+
   return (
     <AnimatedContainer
       height={getHeight(verticalPos)}
