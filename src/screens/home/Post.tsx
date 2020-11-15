@@ -8,10 +8,11 @@ import {
   TapGestureHandler,
   TapGestureHandlerStateChangeEvent,
 } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { PostType } from 'stores/posts/types';
 import { AppTheme } from 'stores/theme/types';
+import { showToast } from 'stores/toast/actions';
 import styled from 'styled-components/native';
 
 const dimensions = Dimensions.get('window');
@@ -30,9 +31,20 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
   const theme = useSelector<RootState, AppTheme>(
     (rootState) => rootState.theme,
   );
+  const dispatch = useDispatch();
 
   const likeButtonPressHandler = (): void => {
     console.log(isLiked ? 'unlike the post👎🏼' : 'like the post👍🏼');
+    if (!isLiked) {
+      dispatch(
+        showToast({
+          verticalPos: 'TOP',
+          message: 'like the post👍🏼',
+          toastType: 'CONFIRM',
+          duration: 1000,
+        }),
+      );
+    }
     setIsLiked(!isLiked);
   };
 
@@ -52,7 +64,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
         <PostHeaderProfile>
           <Image
             source={ASSETS.accountIcon}
-            style={{ width: 36, height: 36, tintColor: COLOR[theme].text}}
+            style={{ width: 36, height: 36, tintColor: COLOR[theme].text }}
           />
           <HighlightedText
             style={{ fontSize: 16, marginLeft: 8, color: COLOR[theme].text }}>

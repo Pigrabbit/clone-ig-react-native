@@ -24,12 +24,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Toast
-          verticalPos={'MIDDLE'}
-          message={'Hello'}
-          type={'CONFIRM'}
-          duration={1000}
-        />
+        <Toast />
         <RootTab />
       </NavigationContainer>
     </Provider>

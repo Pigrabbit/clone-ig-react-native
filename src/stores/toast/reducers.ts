@@ -2,17 +2,12 @@ import {
   CLEAR_TOAST_ACTION,
   SHOW_TOAST_ACTION,
   ToastAction,
-  ToastMessageType,
-  VerticalPosType,
+  ToastMetaData,
 } from './types';
 
 export type ToastState = {
   isVisible: boolean;
-  verticalPos: VerticalPosType;
-  toastType: ToastMessageType;
-  message: string;
-  duration: number;
-};
+} & ToastMetaData;
 
 const initialToastState: ToastState = {
   isVisible: false,

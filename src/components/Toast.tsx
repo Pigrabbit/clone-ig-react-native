@@ -1,19 +1,19 @@
 import { WIDNOW_HEIGHT } from 'constants/metrics';
 import React, { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'stores';
+import { clearToast } from 'stores/toast/actions';
+import { ToastState } from 'stores/toast/reducers';
 import { ToastMessageType, VerticalPosType } from 'stores/toast/types';
 import styled from 'styled-components/native';
 
-interface Props {
-  verticalPos: VerticalPosType;
-  message: string;
-  type: ToastMessageType;
-  duration: number;
-}
-
-// TODO: connect Toast component to global redux store
-// let Toast appear when TOAST/XXX action has dispatched
-const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
+const Toast: React.FC = () => {
+  const toast = useSelector<RootState, ToastState>(
+    (rootState) => rootState.toast,
+  );
+  const { verticalPos, message, toastType, duration, isVisible } = toast;
+  const dispatch = useDispatch();
   const fadeAnimation = useRef(new Animated.Value(0)).current;
 
   const showToast = (duration: number) => {
@@ -29,12 +29,12 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
       toValue: 0,
       duration,
       useNativeDriver: false,
-    }).start();
+    }).start(() => dispatch(clearToast()));
   };
 
   useEffect(() => {
     showToast(duration);
-  }, []);
+  }, [isVisible]);
 
   const getHeight = (posProp: VerticalPosType): number => {
     switch (posProp) {
@@ -47,8 +47,8 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
     }
   };
 
-  const getBackgroundColor = (toastTypeProps: ToastMessageType): string => {
-    switch (toastTypeProps) {
+  const getBackgroundColor = (toastType: ToastMessageType): string => {
+    switch (toastType) {
       case 'CONFIRM':
         return '#badc58';
       case 'WARNING':
@@ -61,7 +61,7 @@ const Toast: React.FC<Props> = ({ verticalPos, message, type, duration }) => {
   return (
     <AnimatedContainer
       height={getHeight(verticalPos)}
-      backgroundColor={getBackgroundColor(type)}
+      backgroundColor={getBackgroundColor(toastType)}
       opacity={fadeAnimation}>
       <Content>{message}</Content>
     </AnimatedContainer>
