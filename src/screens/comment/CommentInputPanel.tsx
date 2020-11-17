@@ -1,26 +1,17 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components/native';
-import { MOCK_WRITER } from 'constants/mock';
-import { RootState } from 'stores';
-import {
-  EDIT_COMMENT,
-  isCommentType,
-  PostState,
-  SELECT_COMMENT_TO_EDIT,
-  WRITE_COMMENT,
-} from 'stores/posts/types';
 import TouchableIcon from 'components/TouchableIcon';
-import { AppTheme } from 'stores/theme/types';
+import { MOCK_WRITER } from 'constants/mock';
 import { COLOR } from 'constants/styles';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'stores';
 import {
   editComment,
   selectCommentToEdit,
   writeComment,
 } from 'stores/posts/actions';
-import { showToast } from 'stores/toast/actions';
+import { isCommentType, PostState } from 'stores/posts/types';
+import { AppTheme } from 'stores/theme/types';
+import styled from 'styled-components/native';
 
 interface Props {
   postId: number;

@@ -39,7 +39,7 @@ const Post: React.FC<Props> = ({ post, onCommentPress }) => {
       dispatch(
         showToast({
           verticalPos: 'TOP',
-          message: 'like the post👍🏼',
+          message: 'liked the post👍🏼',
           toastType: 'CONFIRM',
           duration: 1000,
         }),

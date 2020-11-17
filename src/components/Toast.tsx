@@ -33,6 +33,7 @@ const Toast: React.FC = () => {
   };
 
   useEffect(() => {
+    if (!isVisible) return;
     showToast(duration);
   }, [isVisible]);
 
@@ -60,6 +61,7 @@ const Toast: React.FC = () => {
 
   return (
     <AnimatedContainer
+      pointerEvents="none"
       height={getHeight(verticalPos)}
       backgroundColor={getBackgroundColor(toastType)}
       opacity={fadeAnimation}>
