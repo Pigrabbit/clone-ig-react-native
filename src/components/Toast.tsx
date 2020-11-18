@@ -1,4 +1,4 @@
-import { WIDNOW_HEIGHT } from 'constants/metrics';
+import { WIDNOW_HEIGHT, WINDOW_WIDTH } from 'constants/metrics';
 import React, { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ const Toast: React.FC = () => {
   const dispatch = useDispatch();
   const fadeAnimation = useRef(new Animated.Value(0)).current;
 
-  const showToast = (duration: number) => {
+  const fadeIn = (duration: number) => {
     Animated.timing(fadeAnimation, {
       toValue: 1,
       duration,
@@ -34,7 +34,7 @@ const Toast: React.FC = () => {
 
   useEffect(() => {
     if (!isVisible) return;
-    showToast(duration);
+    fadeIn(duration);
   }, [isVisible]);
 
   const getHeight = (posProp: VerticalPosType): number => {
@@ -79,12 +79,11 @@ interface IStyledContainer {
 const Container = styled.View<IStyledContainer>`
   position: absolute;
   top: ${(props) => `${props.height}px`};
-  left: 10%;
-  width: 80%;
-  height: ${WIDNOW_HEIGHT * 0.1};
+  align-self: center;
+  max-width: ${WINDOW_WIDTH * 0.8};
+  max-height: ${WIDNOW_HEIGHT * 0.1};
+  padding: 12px 16px;
   background-color: ${(props) => props.backgroundColor};
-  border-color: gray;
-  border-width: 1px;
   z-index: 9999;
   align-items: center;
   justify-content: center;
