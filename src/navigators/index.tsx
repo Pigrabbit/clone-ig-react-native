@@ -16,17 +16,17 @@ import HomeScreenStack from './HomeStack';
 const Tab = createBottomTabNavigator();
 
 const RootTab: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchSavedTheme = async () => {
       const savedTheme = await AsyncStorage.getItem('theme');
       if (isAppThemeType(savedTheme)) {
-        dispatch(fetchTheme(savedTheme))
+        dispatch(fetchTheme(savedTheme));
       }
-    }
+    };
 
-    fetchSavedTheme()
-  }, [])
+    fetchSavedTheme();
+  }, []);
   const theme = useSelector<RootState, AppTheme>(
     (rootState) => rootState.theme,
   );
@@ -50,6 +50,13 @@ const RootTab: React.FC = () => {
             />
           ),
         }}
+        listeners={({ navigation }) => ({
+          tabPress: () => {
+            navigation.navigate('Home', {
+              screen: 'Home',
+            });
+          },
+        })}
       />
       <Tab.Screen
         name="PostWriter"

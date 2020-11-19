@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { COLOR } from 'constants/styles';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import CommentScreen from 'screens/comment';
 import HomeScreen from 'screens/home';
-import React from 'react';
-import { COLOR } from 'constants/styles';
-import { useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { AppTheme } from 'stores/theme/types';
 
