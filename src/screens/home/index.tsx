@@ -3,6 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { COLOR } from 'constants/styles';
 import { HomeStackParamList } from 'navigators/HomeStack';
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import Post from 'screens/home/Post';
 import { RootState } from 'stores';
@@ -22,7 +23,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const { postList } = useSelector<RootState, PostState>(
     (rootState) => rootState.post,
   );
-  const theme = useSelector<RootState, AppTheme>((rootState) => rootState.theme)
+  const theme = useSelector<RootState, AppTheme>(
+    (rootState) => rootState.theme,
+  );
 
   const onCommentPress = (postId: number) => {
     navigation.navigate('Comment', { postId });
@@ -30,6 +33,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <StyledScrollView theme={theme}>
+      <StatusBar
+        barStyle={theme === 'DARK_MODE' ? 'light-content' : 'dark-content'}
+      />
       {postList.map((post, idx) => (
         <Post key={idx} post={post} onCommentPress={onCommentPress} />
       ))}
