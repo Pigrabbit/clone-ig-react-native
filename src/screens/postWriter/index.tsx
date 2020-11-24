@@ -1,12 +1,18 @@
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import TouchableIcon from 'components/TouchableIcon';
 import { COLOR } from 'constants/styles';
+import { RootTabParamList } from 'navigators';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { AppTheme } from 'stores/theme/types';
 import styled from 'styled-components/native';
 
-const PostWriterScreen: React.FC = () => {
+interface Props {
+  navigation: BottomTabNavigationProp<RootTabParamList, 'PostWriter'>;
+}
+
+const PostWriterScreen: React.FC<Props> = ({ navigation }) => {
   const theme = useSelector<RootState, AppTheme>(
     (rootState) => rootState.theme,
   );
@@ -15,7 +21,7 @@ const PostWriterScreen: React.FC = () => {
       <Header>
         <TouchableIcon
           iconName="closeIcon"
-          onPress={() => console.log('back')}
+          onPress={() => navigation.goBack()}
           tintColor={COLOR[theme].text}
           width={24}
           height={24}

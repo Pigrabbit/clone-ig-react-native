@@ -1,5 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {
+  BottomTabNavigationProp,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
 import React, { useEffect } from 'react';
@@ -14,6 +17,13 @@ import { AppTheme, isAppThemeType } from 'stores/theme/types';
 import HomeScreenStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
+
+export type RootTabParamList = {
+  Home: undefined;
+  PostWriter: undefined;
+  Activities: undefined;
+  Setting: undefined;
+};
 
 const RootTab: React.FC = () => {
   const dispatch = useDispatch();
