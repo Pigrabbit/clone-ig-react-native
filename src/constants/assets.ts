@@ -6,7 +6,8 @@ export type IconType =
   | 'archiveIcon'
   | 'sendIcon'
   | 'homeIcon'
-  | 'postIcon';
+  | 'postIcon'
+  | 'closeIcon';
 
 export const ASSETS = {
   moreIcon: require('../../assets/icons/outline_more_horiz_black_48dp.png'),
@@ -18,5 +19,6 @@ export const ASSETS = {
   homeIcon: require('../../assets/icons/baseline_home_black_48dp.png'),
   postIcon: require('../../assets/icons/baseline_library_add_black_48dp.png'),
   personIcon: require('../../assets/icons/baseline_person_black_48dp.png'),
-  accountIcon: require('../../assets/icons/outline_account_circle_black_48dp.png')
+  accountIcon: require('../../assets/icons/outline_account_circle_black_48dp.png'),
+  closeIcon: require('../../assets/icons/baseline_close_black_48dp.png'),
 };
