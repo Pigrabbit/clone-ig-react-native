@@ -1,34 +1,39 @@
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import TouchableIcon from 'components/TouchableIcon';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Maybe } from 'components/Maybe';
 import { COLOR } from 'constants/styles';
 import { RootTabParamList } from 'navigators';
-import React, { useEffect } from 'react';
+import { PostWriterParamList } from 'navigators/PostWriterStack';
+import React, { useEffect, useState } from 'react';
+import { Image } from 'react-native';
+import ImagePicker, { ImagePickerOptions } from 'react-native-image-picker';
 import { useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { AppTheme } from 'stores/theme/types';
 import styled from 'styled-components/native';
-import ImagePicker, { ImagePickerOptions } from 'react-native-image-picker';
-import { Alert, Image } from 'react-native';
-import { useState } from 'react';
-import { Maybe } from 'components/Maybe';
+
+// interface Props {
+//   navigation: BottomTabNavigationProp<RootTabParamList, 'PostWriter'>;
+// }
 
 interface Props {
-  navigation: BottomTabNavigationProp<RootTabParamList, 'PostWriter'>;
+  navigation: StackNavigationProp<PostWriterParamList, 'ImagePicker'>;
 }
 
-const PostWriterScreen: React.FC<Props> = ({ navigation }) => {
+const ImagePickerScreen: React.FC<Props> = ({ navigation }) => {
   const theme = useSelector<RootState, AppTheme>(
     (rootState) => rootState.theme,
   );
-  const [imageMetaData, setImageMetaData] = useState({
+  const initialImageMetaData = {
     uri: '',
     width: 0,
     height: 0,
-  });
+  };
+  const [imageMetaData, setImageMetaData] = useState(initialImageMetaData);
 
   useEffect(() => {
-    chooseImageFile();
-  }, []);
+    if (imageMetaData == initialImageMetaData) chooseImageFile();
+  }, [imageMetaData]);
 
   const chooseImageFile = () => {
     const options: ImagePickerOptions = {
@@ -40,6 +45,7 @@ const PostWriterScreen: React.FC<Props> = ({ navigation }) => {
     };
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
+        setImageMetaData(initialImageMetaData);
         navigation.goBack();
       } else if (response.error) {
         console.error(`ImagePickerError: ${response.error}`);
@@ -52,7 +58,7 @@ const PostWriterScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <Container>
-      <Header>
+      {/* <Header>
         <TouchableIcon
           iconName="closeIcon"
           onPress={() => navigation.goBack()}
@@ -64,9 +70,9 @@ const PostWriterScreen: React.FC<Props> = ({ navigation }) => {
         <HeaderNextButton onPress={() => console.log('next')}>
           <HeaderNextButtonText>Next</HeaderNextButtonText>
         </HeaderNextButton>
-      </Header>
-      <Body>
-        <Maybe isVisible={imageMetaData.uri !== ''}>
+      </Header> */}
+      <Maybe isVisible={imageMetaData.uri !== ''}>
+        <Body>
           <Image
             source={{ uri: imageMetaData.uri }}
             style={{
@@ -75,8 +81,13 @@ const PostWriterScreen: React.FC<Props> = ({ navigation }) => {
               aspectRatio: imageMetaData.width / imageMetaData.height,
             }}
           />
-        </Maybe>
-      </Body>
+        </Body>
+        <ConfirmButton
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('PostWriter')}>
+          <ConfirmButtonText>Next</ConfirmButtonText>
+        </ConfirmButton>
+      </Maybe>
     </Container>
   );
 };
@@ -109,7 +120,22 @@ const HeaderNextButtonText = styled.Text`
 
 const Body = styled.View`
   align-items: center;
-  padding: 0 16px;
+  padding: 16px 0;
 `;
 
-export default PostWriterScreen;
+const ConfirmButton = styled.TouchableOpacity`
+  margin: 16px;
+  height: 56px;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+  border-radius: 4px;
+`;
+
+const ConfirmButtonText = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+`;
+
+export default ImagePickerScreen;

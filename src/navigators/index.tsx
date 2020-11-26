@@ -10,11 +10,12 @@ import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ActivitiesScreen from 'screens/activities';
 import MyPageScreen from 'screens/myPage';
-import PostWriterScreen from 'screens/postWriter';
+import PostWriterScreen from 'screens/imagePicker';
 import { RootState } from 'stores';
 import { fetchTheme } from 'stores/theme/actions';
 import { AppTheme, isAppThemeType } from 'stores/theme/types';
 import HomeScreenStack from './HomeStack';
+import PostWriterStack from './PostWriterStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -70,7 +71,7 @@ const RootTab: React.FC = () => {
       />
       <Tab.Screen
         name="PostWriter"
-        component={PostWriterScreen}
+        component={PostWriterStack}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
