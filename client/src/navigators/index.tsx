@@ -1,8 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
 import React, { useEffect } from 'react';
@@ -10,7 +7,6 @@ import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ActivitiesScreen from 'screens/activities';
 import MyPageScreen from 'screens/myPage';
-import PostWriterScreen from 'screens/imagePicker';
 import { RootState } from 'stores';
 import { fetchTheme } from 'stores/theme/actions';
 import { AppTheme, isAppThemeType } from 'stores/theme/types';
@@ -48,6 +44,7 @@ const RootTab: React.FC = () => {
         activeTintColor: COLOR.PINK,
         showLabel: false,
         style: { backgroundColor: COLOR[theme].backgroundColor },
+        tabStyle: { width: '25%' },
       }}
       sceneContainerStyle={{ backgroundColor: COLOR[theme].backgroundColor }}>
       <Tab.Screen
@@ -57,7 +54,11 @@ const RootTab: React.FC = () => {
           tabBarIcon: ({ color, size }) => (
             <Image
               source={ASSETS.homeIcon}
-              style={{ width: size, height: size, tintColor: color }}
+              style={{
+                width: 1.5 * size,
+                height: 1.5 * size,
+                tintColor: color,
+              }}
             />
           ),
         }}
@@ -76,7 +77,11 @@ const RootTab: React.FC = () => {
           tabBarIcon: ({ color, size }) => (
             <Image
               source={ASSETS.postIcon}
-              style={{ width: size, height: size, tintColor: color }}
+              style={{
+                width: 1.3 * size,
+                height: 1.3 * size,
+                tintColor: color,
+              }}
             />
           ),
         }}
@@ -88,7 +93,11 @@ const RootTab: React.FC = () => {
           tabBarIcon: ({ color, size }) => (
             <Image
               source={ASSETS.likeFilledIcon}
-              style={{ width: size, height: size, tintColor: color }}
+              style={{
+                width: 1.3 * size,
+                height: 1.3 * size,
+                tintColor: color,
+              }}
             />
           ),
         }}
@@ -100,7 +109,11 @@ const RootTab: React.FC = () => {
           tabBarIcon: ({ color, size }) => (
             <Image
               source={ASSETS.personIcon}
-              style={{ width: size, height: size, tintColor: color }}
+              style={{
+                width: 1.3 * size,
+                height: 1.3 * size,
+                tintColor: color,
+              }}
             />
           ),
         }}
