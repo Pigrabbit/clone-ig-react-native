@@ -1,12 +1,12 @@
-import { combineReducers } from 'client/node_modules/redux'
-import { postReducer } from './posts/reducers'
-import { themeReducer } from './theme/reducers'
-import { toastReducer } from './toast/reducers'
+import { combineReducers } from 'redux';
+import { postReducer } from './posts/reducers';
+import { themeReducer } from './theme/reducers';
+import { toastReducer } from './toast/reducers';
 
 export const rootReducer = combineReducers({
   post: postReducer,
   theme: themeReducer,
   toast: toastReducer,
-})
+});
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;

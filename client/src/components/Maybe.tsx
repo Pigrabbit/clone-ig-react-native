@@ -1,4 +1,4 @@
-import React from 'client/node_modules/react';
+import React from 'react';
 
 interface Props {
   isVisible: boolean;

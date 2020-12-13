@@ -1,4 +1,4 @@
-import React from 'client/node_modules/react';
+import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export const Swipeable: React.FC = (props) => {

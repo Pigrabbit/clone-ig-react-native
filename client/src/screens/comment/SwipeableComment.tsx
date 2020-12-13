@@ -2,15 +2,15 @@ import { Maybe } from 'components/Maybe';
 import { Swipeable } from 'components/Swipeable';
 import { MOCK_WRITER } from 'constants/mock';
 import { COLOR } from 'constants/styles';
-import React from 'client/node_modules/react';
-import { Dimensions, Text } from 'client/node_modules/react-native';
-import { useDispatch, useSelector } from 'client/node_modules/react-redux';
+import React from 'react';
+import { Dimensions, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { HighlightedText } from 'screens/home/Post';
 import { RootState } from 'stores';
 import { deleteComment, selectCommentToEdit } from 'stores/posts/actions';
 import { DELETE_COMMENT, SELECT_COMMENT_TO_EDIT } from 'stores/posts/types';
 import { AppTheme } from 'stores/theme/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -27,11 +27,11 @@ const SwipeableComment: React.FC<Props> = ({ postId, id, writer, content }) => {
   );
   const dispatch = useDispatch();
   const editPressHandler = () => {
-    dispatch(selectCommentToEdit({id, writer, content}))
+    dispatch(selectCommentToEdit({ id, writer, content }));
   };
 
   const deletePressHandler = () => {
-    dispatch(deleteComment(postId, id))
+    dispatch(deleteComment(postId, id));
   };
 
   return (

@@ -1,8 +1,8 @@
 import TouchableIcon from 'components/TouchableIcon';
 import { MOCK_WRITER } from 'constants/mock';
 import { COLOR } from 'constants/styles';
-import React, { useEffect, useState } from 'client/node_modules/react';
-import { useDispatch, useSelector } from 'client/node_modules/react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import {
   editComment,
@@ -11,7 +11,7 @@ import {
 } from 'stores/posts/actions';
 import { isCommentType, PostState } from 'stores/posts/types';
 import { AppTheme } from 'stores/theme/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 interface Props {
   postId: number;

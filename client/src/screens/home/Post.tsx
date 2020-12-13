@@ -1,19 +1,19 @@
 import TouchableIcon from 'components/TouchableIcon';
 import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
-import React, { useRef, useState } from 'client/node_modules/react';
-import { Dimensions, Image, Text } from 'client/node_modules/react-native';
+import React, { useRef, useState } from 'react';
+import { Dimensions, Image, Text } from 'react-native';
 import {
   State,
   TapGestureHandler,
   TapGestureHandlerStateChangeEvent,
 } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'client/node_modules/react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { PostType } from 'stores/posts/types';
 import { AppTheme } from 'stores/theme/types';
 import { showToast } from 'stores/toast/actions';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 const dimensions = Dimensions.get('window');
 const imageWidth = dimensions.width;

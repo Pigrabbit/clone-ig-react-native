@@ -6,7 +6,7 @@ import {
   SELECT_COMMENT_TO_EDIT,
   WRITE_COMMENT,
 } from './types';
-import produce from 'client/node_modules/immer';
+import produce from 'immer';
 
 const initialState: PostState = {
   postList: [

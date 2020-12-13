@@ -1,15 +1,15 @@
-import { RouteProp } from 'client/node_modules/@react-navigation/native';
-import { StackNavigationProp } from 'client/node_modules/@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { COLOR } from 'constants/styles';
 import { HomeStackParamList } from 'navigators/HomeStack';
-import React from 'client/node_modules/react';
-import { StatusBar } from 'client/node_modules/react-native';
-import { useSelector } from 'client/node_modules/react-redux';
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { useSelector } from 'react-redux';
 import Post from 'screens/home/Post';
 import { RootState } from 'stores';
 import { PostState } from 'stores/posts/types';
 import { AppTheme } from 'stores/theme/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 type HomeScreenRouteProp = RouteProp<HomeStackParamList, 'Home'>;
 type HomeScreenNavigationProp = StackNavigationProp<HomeStackParamList, 'Home'>;

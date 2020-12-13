@@ -1,12 +1,12 @@
 import { WIDNOW_HEIGHT, WINDOW_WIDTH } from 'constants/metrics';
-import React, { useEffect, useRef } from 'client/node_modules/react';
-import { Animated } from 'client/node_modules/react-native';
-import { useDispatch, useSelector } from 'client/node_modules/react-redux';
+import React, { useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { clearToast } from 'stores/toast/actions';
 import { ToastState } from 'stores/toast/reducers';
 import { ToastMessageType, VerticalPosType } from 'stores/toast/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 const Toast: React.FC = () => {
   const toast = useSelector<RootState, ToastState>(

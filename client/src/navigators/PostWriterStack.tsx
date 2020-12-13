@@ -1,7 +1,7 @@
-import { createStackNavigator } from 'client/node_modules/@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { COLOR } from 'constants/styles';
-import React from 'client/node_modules/react';
-import { useSelector } from 'client/node_modules/react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import ImagePickerScreen from 'screens/imagePicker';
 import { RootState } from 'stores';
 import { AppTheme } from 'stores/theme/types';

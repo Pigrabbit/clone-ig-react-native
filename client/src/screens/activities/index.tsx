@@ -1,5 +1,5 @@
-import React from 'client/node_modules/react';
-import { Text, View } from 'client/node_modules/react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 
 const ActivitiesScreen: React.FC = () => {
   return (

@@ -1,12 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLOR } from 'constants/styles';
-import React, { useState } from 'client/node_modules/react';
+import React, { useState } from 'react';
 import { Switch } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'client/node_modules/react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { toggleTheme } from 'stores/theme/actions';
 import { AppTheme, DARK_MODE, LIGHT_MODE } from 'stores/theme/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 const MyPageScreen: React.FC = () => {
   const theme = useSelector<RootState, AppTheme>(

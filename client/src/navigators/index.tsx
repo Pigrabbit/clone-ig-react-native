@@ -2,12 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
-} from 'client/node_modules/@react-navigation/bottom-tabs';
+} from '@react-navigation/bottom-tabs';
 import { ASSETS } from 'constants/assets';
 import { COLOR } from 'constants/styles';
-import React, { useEffect } from 'client/node_modules/react';
-import { Image } from 'client/node_modules/react-native';
-import { useDispatch, useSelector } from 'client/node_modules/react-redux';
+import React, { useEffect } from 'react';
+import { Image } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import ActivitiesScreen from 'screens/activities';
 import MyPageScreen from 'screens/myPage';
 import PostWriterScreen from 'screens/imagePicker';

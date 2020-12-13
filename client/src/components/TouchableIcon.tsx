@@ -1,7 +1,7 @@
 import { ASSETS, IconType } from 'constants/assets';
-import React from 'client/node_modules/react';
-import { TouchableOpacity } from 'client/node_modules/react-native';
-import styled from 'client/node_modules/styled-components/native';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
 
 interface Props {
   iconName: IconType;

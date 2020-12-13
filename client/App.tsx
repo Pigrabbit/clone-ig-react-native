@@ -8,11 +8,11 @@
  * @format
  */
 
-import { NavigationContainer } from 'client/node_modules/@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'components/Toast';
-import React from 'client/node_modules/react';
-import { Provider } from 'client/node_modules/react-redux';
-import { createStore } from 'client/node_modules/redux';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import RootTab from './src/navigators';
 import { rootReducer } from './src/stores';
 

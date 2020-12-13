@@ -1,16 +1,16 @@
-import { BottomTabNavigationProp } from 'client/node_modules/@react-navigation/bottom-tabs';
-import { StackNavigationProp } from 'client/node_modules/@react-navigation/stack';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { Maybe } from 'components/Maybe';
 import { COLOR } from 'constants/styles';
 import { RootTabParamList } from 'navigators';
 import { PostWriterParamList } from 'navigators/PostWriterStack';
-import React, { useEffect, useState } from 'client/node_modules/react';
-import { Image } from 'client/node_modules/react-native';
-import ImagePicker, { ImagePickerOptions } from 'client/node_modules/react-native-image-picker';
-import { useSelector } from 'client/node_modules/react-redux';
+import React, { useEffect, useState } from 'react';
+import { Image } from 'react-native';
+import ImagePicker, { ImagePickerOptions } from 'react-native-image-picker';
+import { useSelector } from 'react-redux';
 import { RootState } from 'stores';
 import { AppTheme } from 'stores/theme/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 // interface Props {
 //   navigation: BottomTabNavigationProp<RootTabParamList, 'PostWriter'>;

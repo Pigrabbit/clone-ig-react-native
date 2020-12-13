@@ -1,15 +1,15 @@
-import { RouteProp } from 'client/node_modules/@react-navigation/native';
-import { StackNavigationProp } from 'client/node_modules/@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { HomeStackParamList } from 'navigators/HomeStack';
-import React from 'client/node_modules/react';
-import { KeyboardAvoidingView } from 'client/node_modules/react-native';
-import { useSelector } from 'client/node_modules/react-redux';
+import React from 'react';
+import { KeyboardAvoidingView } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import CommentInputPanel from 'screens/comment/CommentInputPanel';
 import SwippableComment from 'screens/comment/SwipeableComment';
 import { RootState } from 'stores';
 import { PostState } from 'stores/posts/types';
-import styled from 'client/node_modules/styled-components/native';
+import styled from 'styled-components/native';
 
 type CommentScreenRouteProp = RouteProp<HomeStackParamList, 'Comment'>;
 type CommentScreenNavigationProp = StackNavigationProp<
@@ -27,7 +27,7 @@ const CommentScreen: React.FC<Props> = ({ route }) => {
   const { postList } = useSelector<RootState, PostState>(
     (rootState) => rootState.post,
   );
-  
+
   const commentList = postList.filter((post) => post.id === postId)[0].comments;
 
   return (
